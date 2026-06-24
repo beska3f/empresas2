@@ -1,0 +1,1292 @@
+﻿<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Beneficios e incentivos · Municipalidad de Tres de Febrero</title>
+  <meta name="description" content="Tasas bajas, habilitación gratuita e incentivos fiscales para empresas que invierten en Tres de Febrero: RET, RIGI, crédito fiscal y la TISH más baja del GBA."/>
+  <link rel="icon" href="img/logo-solo.png"/>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="shared.css"/>
+  <link rel="stylesheet" href="animations.css"/>
+  <style>
+    /* ── Variables adicionales ── */
+    :root {
+      --n200:      #EDEDED;
+      --r-pill:    100px;
+      --r-xl:      20px;
+      --teal-light:#DCF4F0;
+      --teal:      #71C1B1;
+      --azul-deep: #0A1E35;
+      --ease:      cubic-bezier(.4,0,.2,1);
+    }
+
+    /* ── MARCO NORMATIVO ── */
+    .mn-wrap {
+      background: var(--azul-deep); border-radius: var(--r-xl);
+      display: grid; grid-template-columns: 340px 1fr; gap: 56px;
+      padding: 52px; align-items: start;
+    }
+    .mn-eyebrow { font-size: 10px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--naranja); margin-bottom: 18px; display: flex; align-items: center; gap: 10px; }
+    .mn-eyebrow::before { content: ''; display: block; width: 20px; height: 2px; background: var(--naranja); flex-shrink: 0; }
+    .mn-title { font-family: 'Fraunces', serif; font-weight: 600; font-size: 34px; color: #fff; line-height: 1.1; letter-spacing: -.02em; margin-bottom: 14px; }
+    .mn-underline { width: 40px; height: 3px; background: var(--naranja); margin-bottom: 20px; border-radius: 2px; }
+    .mn-desc { font-size: 14px; color: rgba(255,255,255,.6); line-height: 1.75; margin-bottom: 14px; }
+    .mn-grid { display: grid; grid-template-columns: repeat(2,1fr); gap: 14px; }
+    .mn-card {
+      background: rgba(255,255,255,.07); border: 1px solid rgba(255,255,255,.1);
+      border-radius: var(--r-sm); padding: 14px;
+      display: flex; align-items: center; gap: 12px; transition: background .2s;
+    }
+    .mn-card:hover { background: rgba(255,255,255,.12); }
+    .mn-card-icon {
+      width: 32px; height: 32px; border-radius: 6px; flex-shrink: 0;
+      background: rgba(246,147,33,.18); display: flex; align-items: center; justify-content: center;
+    }
+    .mn-card-title { font-size: 12px; font-weight: 600; color: #fff; line-height: 1.35; flex: 1; }
+    .mn-card-desc { display: none; }
+    .mn-card-foot { flex-shrink: 0; }
+    .mn-dl {
+      width: 28px; height: 28px; border-radius: 50%;
+      border: 1.5px solid rgba(255,255,255,.22);
+      display: flex; align-items: center; justify-content: center;
+      text-decoration: none; transition: border-color .15s, background .15s;
+    }
+    .mn-dl:hover { border-color: var(--naranja); background: rgba(246,147,33,.2); }
+
+    /* ── COMPARISON TABLE ── */
+    .comp-wrap { border-radius: var(--r-lg); overflow: hidden; box-shadow: 0 4px 24px rgba(0,0,0,.08); }
+    .comp-table { width: 100%; border-collapse: collapse; }
+    .comp-table thead tr { background: var(--azul-deep); }
+    .comp-table thead th { padding: 10px 28px; text-align: left; font-size: 16px; font-weight: 700; color: #fff; letter-spacing: .03em; }
+    .comp-table thead th:nth-child(2) { color: var(--naranja); }
+    .comp-table tbody tr { border-bottom: 1px solid var(--n200); }
+    .comp-table tbody tr:nth-child(even) { background: #f5f8ff; }
+    .comp-table tbody tr:nth-child(odd)  { background: #fff; }
+    .comp-table td { padding: 18px 28px; font-size: 14px; vertical-align: middle; }
+    .comp-table td:first-child { color: var(--azul); font-weight: 600; }
+    .comp-table td:nth-child(2) { font-weight: 700; color: var(--azul); }
+    .comp-table td:nth-child(3) { color: var(--n700); font-size: 13px; }
+    .comp-check { display: inline-flex; align-items: center; gap: 10px; }
+    .comp-check::before {
+      content: '✓'; width: 22px; height: 22px; border-radius: 50%;
+      background: #dcfce7; color: #16a34a; font-size: 11px; font-weight: 800;
+      display: inline-flex; align-items: center; justify-content: center; flex-shrink: 0;
+    }
+    .comp-checklist { display: flex; flex-direction: column; gap: 5px; }
+    .comp-checklist-item { display: inline-flex; align-items: center; gap: 8px; font-size: 13px; font-weight: 700; color: var(--azul); }
+    .comp-checklist-item::before {
+      content: '✓'; width: 18px; height: 18px; border-radius: 50%; flex-shrink: 0;
+      background: #dcfce7; color: #16a34a; font-size: 10px; font-weight: 800;
+      display: inline-flex; align-items: center; justify-content: center;
+    }
+    .th-short { display: none; }
+    .comp-legend { display: none; text-align: center; font-size: 11px; color: var(--n500); margin-top: 0; padding: 14px 20px; background: #f5f8ff; border-top: 1px solid var(--n200); line-height: 1.6; }
+    .comp-eyebrow {
+      display: flex; align-items: center; justify-content: center; gap: 10px;
+      font-size: 11px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase;
+      color: var(--naranja); margin-bottom: 16px;
+    }
+    .comp-eyebrow::before, .comp-eyebrow::after {
+      content: ''; display: inline-block; width: 24px; height: 2px; background: var(--naranja);
+    }
+
+    /* ── TISH CALCULATOR ── */
+    .tish-calc { margin-top: 32px; background: #fff; border: 1px solid var(--n200); border-radius: var(--r-lg); padding: 36px 40px; }
+    .tish-calc-eyebrow { font-size: 10px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: var(--naranja); margin-bottom: 8px; }
+    .tish-calc-title { font-size: 16px; font-weight: 700; color: var(--azul); margin-bottom: 28px; }
+    .tish-input-label { font-size: 12px; font-weight: 600; color: var(--n700); margin-bottom: 10px; display: block; }
+    .tish-compare-wrap { display: block; }
+    .tish-results { display: grid; grid-template-columns: 1fr 1fr; grid-template-rows: auto auto; gap: 10px; }
+    .tish-rc-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 8px; }
+    .tish-rc-header .tish-rc-label { margin-bottom: 0; }
+    .tish-rate-badge { font-size: 12px; font-weight: 800; color: var(--azul); background: rgba(22,60,104,.1); padding: 3px 10px; border-radius: 100px; border: 1.5px solid rgba(22,60,104,.18); white-space: nowrap; }
+    .tish-result-card { border-radius: 14px; padding: 18px 20px; }
+    .tish-result-card.savings { grid-column: 1 / -1; }
+    .tish-result-card.tres3f { background: var(--azul-mist); border: 1.5px solid rgba(22,60,104,.14); }
+    .tish-result-card.gba-avg { background: #fafafa; border: 1px solid var(--n200); }
+    .tish-result-card.savings { background: linear-gradient(135deg,var(--azul-deep) 0%,var(--azul) 100%); border: none; display: flex; align-items: center; gap: 20px; padding: 20px 24px; }
+    .tish-rc-label { font-size: 10px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 8px; }
+    .tres3f .tish-rc-label { color: var(--azul); opacity: .65; }
+    .gba-avg .tish-rc-label { color: var(--n500); }
+    .savings .tish-rc-label { color: rgba(255,255,255,.5); margin-bottom: 4px; }
+    .tish-rc-amount { font-size: 24px; font-weight: 800; line-height: 1; margin-bottom: 4px; }
+    .tres3f .tish-rc-amount { color: var(--azul-deep); }
+    .gba-avg .tish-rc-amount { color: var(--n700); }
+    .savings .tish-rc-amount { font-size: 30px; color: var(--naranja); }
+    .tish-rc-sub { font-size: 11px; line-height: 1.4; }
+    .tres3f .tish-rc-sub, .gba-avg .tish-rc-sub { color: var(--n500); }
+    .savings .tish-rc-sub { color: rgba(255,255,255,.5); font-size: 12px; }
+    .savings-icon { width: 40px; height: 40px; border-radius: 50%; background: rgba(246,147,33,.15); display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+    .savings-text { flex: 1; }
+    .tish-sector-bar { display:flex; flex-wrap:wrap; gap:6px; margin-bottom:24px; }
+    .tish-stab { font-family:inherit; font-size:12px; font-weight:600; padding:12px 16px; border-radius:100px; border:1.5px solid var(--n300); background:#fafafa; color:var(--azul); cursor:pointer; transition:all .14s; line-height:1; }
+    .tish-stab:hover { border-color:var(--azul); color:var(--azul); background:var(--azul-mist); }
+    .tish-stab.on { background:var(--azul); color:#fff; border-color:var(--azul); }
+    @media (max-width:768px) { .tish-results { grid-template-columns:1fr 1fr; } .tish-result-card.savings { grid-column:1/-1; } }
+    .tish-ref-lbl { font-size:10px; font-weight:700; letter-spacing:1px; text-transform:uppercase; color:var(--n700); margin-bottom:10px; }
+    .tish-ref-table { width:100%; border-collapse:collapse; font-size:12px; border-radius:8px; overflow:hidden; }
+    .tish-ref-table th { padding:9px 14px; background:var(--azul); color:#fff; font-weight:700; font-size:11px; white-space:nowrap; text-align:center; }
+    .tish-ref-table th:first-child { text-align:left; }
+    .tish-ref-table td { padding:8px 14px; border-bottom:1px solid var(--n200); text-align:center; color:var(--n900); }
+    .tish-ref-table td:first-child { text-align:left; font-weight:600; color:var(--azul); min-width:220px; }
+    .tish-ref-table tr.hl-row td { background:rgba(22,60,104,.04); }
+    .tish-ref-table th.hl-col { background:var(--naranja); }
+    .tish-ref-table td.hl-col { font-weight:700; }
+    .tish-ref-table td.hl-cell { background:var(--naranja); color:var(--azul-deep); font-weight:800; }
+
+    /* ── TISH REFERENCE CARDS (mobile) ── */
+    .trc-cards { display: flex; flex-direction: column; gap: 10px; }
+    .trc-card { border: 1px solid var(--n200); border-radius: 10px; overflow: hidden; }
+    .trc-head { padding: 10px 14px; background: var(--azul-deep); color: #fff; font-size: 12px; font-weight: 700; }
+    .trc-rate { display: flex; justify-content: space-between; align-items: center; padding: 10px 14px; border-bottom: 1px solid var(--n200); background: #fff; }
+    .trc-rate:last-child { border-bottom: none; }
+    .trc-lbl { font-size: 12px; color: var(--n700); font-weight: 500; }
+    .trc-val { font-size: 14px; font-weight: 700; color: var(--n700); }
+    .trc-rate.trc-hl { background: rgba(22,60,104,.05); }
+    .trc-rate.trc-hl .trc-lbl { color: var(--azul); font-weight: 700; }
+    .trc-rate.trc-hl .trc-val { color: var(--naranja); font-weight: 800; }
+    @media (max-width: 960px) {
+      .mn-wrap { grid-template-columns: 1fr; gap: 32px; padding: 36px; }
+      .comp-table td, .comp-table th { padding: 14px 16px; }
+      .tish-calc { padding: 24px 20px; }
+    }
+    @media (max-width: 600px) {
+      .mn-grid { grid-template-columns: 1fr; }
+      .page-hero-text p { font-size: 14px; }
+      .tish-calc { padding: 20px 16px; }
+      #tish-ref-body { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+      .tish-ref-table { min-width: 440px; }
+      .tish-ref-table td:first-child { min-width: 150px; }
+      .comp-table { font-size: 12px; table-layout: fixed; width: 100%; }
+      .comp-table th:first-child, .comp-table td:first-child { width: 32%; }
+      .comp-table th:nth-child(2), .comp-table td:nth-child(2) { width: 42%; }
+      .comp-table th:nth-child(3), .comp-table td:nth-child(3) { width: 26%; }
+      .comp-table td, .comp-table th { padding: 12px 10px; }
+      .comp-table thead th { font-size: 13px; }
+      .th-long { display: none; }
+      .th-short { display: inline; }
+      .comp-check { gap: 6px; }
+      .comp-check::before { width: 18px; height: 18px; font-size: 10px; flex-shrink: 0; }
+      .comp-legend { display: block; }
+    }
+
+    /* ── FILTER TABS (reutilizado en Por qué 3F) ── */
+    .scope-bar { display: flex; gap: 6px; flex-wrap: wrap; align-items: center; }
+    .scope-btn { display: inline-flex; align-items: center; gap: 5px; font-family: inherit; font-size: 13px; font-weight: 600; color: var(--n700); background: #F3F4F6; border: 1.5px solid transparent; border-radius: 100px; padding: 11px 14px; cursor: pointer; white-space: nowrap; transition: all .14s; outline: none; line-height: 1; }
+    .scope-btn:hover { border-color: var(--azul); color: var(--azul); background: var(--azul-mist); }
+    .scope-btn.active { background: var(--azul); color: #fff; border-color: var(--azul); }
+    .scope-count { font-size: 10px; font-weight: 700; opacity: .65; }
+
+    /* ── POR QUÉ 3F ── */
+    .por-que-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 20px; }
+    .pq-card { background: #fff; border: 1px solid var(--n200); border-radius: 14px; padding: 28px 24px; border-top: 3px solid var(--n300); transition: border-top-color .2s; }
+    .pq-card:hover { border-top-color: var(--naranja); }
+    .pq-card h3 { font-size: 16px; font-weight: 700; color: var(--azul); margin-bottom: 14px; line-height: 1.3; }
+    .pq-list { list-style: none; display: flex; flex-direction: column; gap: 8px; }
+    .pq-list li { position: relative; font-size: 13px; color: var(--n700); line-height: 1.5; display: block; padding-left: 20px; }
+    .pq-list li::before { content: '—'; color: var(--naranja); font-weight: 700; font-size: 11px; position: absolute; left: 0; top: 2px; }
+    @media (max-width: 700px) { .por-que-grid { grid-template-columns: 1fr; } }
+
+    /* ── SECTORES ── */
+    .sector-tabs { display: flex; gap: 6px; flex-wrap: nowrap; justify-content: center; padding: 20px 20px 14px; border-bottom: 1px solid rgba(255,255,255,.1); }
+    .stab { background: rgba(255,255,255,.08); border: 1.5px solid rgba(255,255,255,.18); color: rgba(255,255,255,.7); font-family: inherit; font-size: 12px; font-weight: 600; padding: 9px 15px; border-radius: var(--r-pill); transition: all .15s; white-space: nowrap; cursor: pointer; }
+    .stab:hover { border-color: rgba(255,255,255,.5); color: #fff; }
+    .stab.on { background: #fff; color: var(--azul); border-color: #fff; }
+    .sector-card { background: rgba(0,0,0,.28); border-radius: 20px; overflow: hidden; border: 1px solid rgba(255,255,255,.12); }
+    .sector-panel { display: none; }
+    .sector-panel.on { display: grid; grid-template-columns: 3fr 1fr; align-items: start; }
+    .sp-left { padding: 52px 56px 28px 56px; border-right: 1px solid rgba(255,255,255,.1); display: flex; flex-direction: column; gap: 0; }
+    .sp-rows { flex: 1; margin-bottom: 32px; }
+    .sp-row { display: flex; justify-content: space-between; align-items: center; padding: 11px 0; border-bottom: 1px solid rgba(255,255,255,.08); font-size: 13px; gap: 12px; }
+    .sp-row-l { color: rgba(255,255,255,.65); }
+    .sp-row-r { font-weight: 700; color: #fff; white-space: nowrap; }
+    .sp-row-list { align-items: flex-start; }
+    .sp-checklist { display: flex; flex-direction: column; gap: 4px; }
+    .sp-checklist span { display: inline-flex; align-items: center; gap: 7px; font-size: 13px; font-weight: 700; color: #fff; }
+    .sp-checklist span::before { content: '✓'; width: 16px; height: 16px; border-radius: 50%; flex-shrink: 0; background: rgba(74,222,128,.15); color: #4ade80; font-size: 9px; font-weight: 900; display: inline-flex; align-items: center; justify-content: center; }
+    .sp-right { padding: 40px 36px 28px; display: flex; flex-direction: column; justify-content: center; align-items: stretch; }
+    .sp-tish { background: rgba(255,255,255,.08); border-radius: 14px; padding: 24px 20px; display: flex; flex-direction: column; align-items: center; gap: 0; border: 1px solid rgba(255,255,255,.15); }
+    .sp-tish-eye { font-size: 10px; font-weight: 700; letter-spacing: 1.4px; text-transform: uppercase; color: rgba(255,255,255,.75); margin-bottom: 18px; align-self: flex-start; }
+    .sp-tish-row { text-align: center; }
+    .sp-tish-num { font-family: 'Fraunces', serif; font-size: 38px; font-weight: 500; line-height: 1; margin-bottom: 3px; }
+    .sp-tish-row.min .sp-tish-num { color: #fff; }
+    .sp-tish-row.max .sp-tish-num { color: var(--naranja); }
+    .sp-tish-lbl { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: .6px; color: rgba(255,255,255,.65); }
+    .sp-tish-connector { width: 2px; height: 28px; margin: 10px auto; background: linear-gradient(to bottom, rgba(255,255,255,.5), var(--naranja)); border-radius: 2px; }
+    .sp-tish-note { font-size: 12px; color: rgba(255,255,255,.7); line-height: 1.4; text-align: center; margin-top: 16px; }
+    @media (max-width: 600px) {
+      .sp-tish { display: grid; grid-template-columns: 1fr auto 1fr; grid-template-rows: auto auto auto; align-items: center; column-gap: 8px; padding: 16px 14px; }
+      .sp-tish-eye { grid-column: 1 / -1; grid-row: 1; margin-bottom: 10px; align-self: auto; }
+      .sp-tish-row { grid-row: 2; }
+      .sp-tish-row.min { grid-column: 1; }
+      .sp-tish-row.max { grid-column: 3; }
+      .sp-tish-num { font-size: 26px; }
+      .sp-tish-connector { grid-column: 2; grid-row: 2; width: 20px; height: 2px; margin: 0; background: linear-gradient(to right, rgba(255,255,255,.5), var(--naranja)); }
+      .sp-tish-note { grid-column: 1 / -1; grid-row: 3; margin-top: 10px; }
+    }
+    @media (max-width: 960px) { .sector-panel.on { grid-template-columns: 1fr; } .sp-left { border-right: none; border-bottom: 1px solid rgba(255,255,255,.1); padding: 36px 36px 32px; } .sp-right { padding: 32px 36px 36px; } }
+    @media (max-width: 600px) { .sector-tabs { justify-content: flex-start; overflow-x: auto; padding: 14px 14px 10px; } }
+
+  /* ── STICKY STACK LAYOUT ── */
+  /* overflow-x:clip no crea scroll container, a diferencia de hidden que rompe position:sticky.
+     Hay que aplicarlo en html Y body: ambos tienen overflow-x:hidden en shared.css */
+  html, body { overflow-x: clip; }
+
+  /* Scroll por secciones SUAVE: 'proximity' engancha sólo cuando ya estás cerca
+     del inicio de una sección, así no se traba ni pelea el scroll libre (clave en
+     secciones altas y trackpads). scroll-padding-top: 112px → la sección cae justo
+     debajo de la tool bar (60+52). */
+  html {
+    scroll-snap-type: y proximity;
+    scroll-padding-top: 112px;
+  }
+  /* El hero NO es punto de snap: evita que el scroll "se bloquee" mostrando el hueco del hero */
+  .stack-section { scroll-snap-align: start; }
+
+  /* Accesibilidad: respetar a quienes prefieren menos movimiento */
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-snap-type: none; scroll-behavior: auto; }
+  }
+
+  /* Hero corto (igual que red-comercios: default de shared.css). */
+
+  .pagetabs {
+    position: sticky;
+    top: 60px;
+    z-index: 50;
+    background: var(--azul-deep);
+    height: 52px;
+    display: flex;
+    align-items: stretch;
+    border-bottom: 1px solid rgba(255,255,255,.12);
+  }
+  .pagetabs-inner {
+    display: flex;
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 48px;
+    align-items: stretch;
+  }
+  .ptab {
+    color: rgba(255,255,255,.6);
+    font-size: 13px;
+    font-weight: 600;
+    padding: 0 22px;
+    border: none;
+    background: none;
+    cursor: pointer;
+    border-bottom: 3px solid transparent;
+    transition: color .2s, border-color .2s;
+    white-space: nowrap;
+    font-family: inherit;
+    touch-action: manipulation;
+  }
+  .ptab:hover { color: rgba(255,255,255,.9); }
+  .ptab.active { color: #fff; border-bottom-color: var(--naranja); }
+
+  /* Secciones: flujo normal (sin scroll interno, nada se corta).
+     Look de "tarjetas apiladas": tope redondeado, sombra hacia arriba y
+     solapado leve para que cada card monte sobre la anterior al scrollear. */
+  .stack-section {
+    position: relative;
+    min-height: calc(100vh - 112px);
+    scroll-margin-top: 112px;       /* al navegar, cae justo debajo de la tool bar */
+    border-radius: 18px 18px 0 0;
+    box-shadow: 0 -10px 40px rgba(0,0,0,.16);
+    margin-top: -18px;              /* solapa la card anterior */
+  }
+  /* z-index incremental: cada card pinta sobre la anterior */
+  /* Primera sección sin snap: el scroll desde el hero corto entra libre (sin enganche brusco) */
+  #por-que-cards { z-index: 2; background: #fff; scroll-snap-align: none; }
+  #comparacion   { z-index: 3; background: var(--n100); }
+  #sectores      { z-index: 4; background: var(--azul-deep); }
+  #simulador     { z-index: 5; background: var(--n100); }
+  /* Marco Legal: última sección. Alto intermedio: suficiente para que el
+     scroll-spy la marque al llegar, pero dejando lugar al footer (snap propio). */
+  #marco         { z-index: 6; background: var(--azul-deep); min-height: 72vh; }
+  .footer { scroll-snap-align: end; }
+
+  @media (max-width: 768px) {
+    .pagetabs-inner { padding: 0; overflow-x: auto; justify-content: center; }
+    .pagetabs-inner::-webkit-scrollbar { display: none; }
+    .ptab { padding: 0 16px; font-size: 12px; }
+  }
+  #comparacion .sec-title { font-size: 42px; }
+  @media (max-width: 600px) { #comparacion .sec-title { font-size: 22px; } }
+  </style>
+</head>
+<body>
+
+<a class="skip-link" href="#por-que">Saltar al contenido</a>
+
+<nav class="nav">
+  <div class="container">
+    <div class="nav-inner">
+      <div class="nav-brand">
+        <img src="img/logo2.png" alt="Municipalidad de Tres de Febrero">
+      </div>
+      <nav class="nav-links">
+        <a href="inicio.html">Inicio</a>
+        <a href="ben-inc.html" class="active" aria-current="page">Beneficios e incentivos</a>
+        <a href="red-comercios.html">Red de comercio</a>
+        <a href="novedades.html">Novedades</a>
+      </nav>
+      <button class="nav-toggle" aria-label="Abrir menú" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+      <a href="inicio.html#contacto" class="nav-cta">Contactanos</a>
+    </div>
+  </div>
+</nav>
+<!-- MENÚ MOBILE -->
+<div class="mobile-menu" id="mobileMenu">
+  <div class="mm-head">
+    <img src="img/logo2.png" alt="Municipalidad de Tres de Febrero" class="mm-logo">
+    <button class="mm-close" aria-label="Cerrar menú">&times;</button>
+  </div>
+  <nav class="mm-nav">
+    <div class="mm-group">
+      <button class="mm-top" aria-expanded="false">Inicio<span class="mm-ico" aria-hidden="true"></span></button>
+      <div class="mm-sub">
+        <a href="inicio.html">Página de inicio</a>
+        <a href="inicio.html#proceso">Paso a paso</a>
+        <a href="inicio.html#distrito">El distrito</a>
+        <a href="inicio.html#novedades">Novedades</a>
+        <a href="inicio.html#contacto">Contacto</a>
+      </div>
+    </div>
+    <div class="mm-group is-current open">
+      <button class="mm-top" aria-expanded="true">Beneficios e incentivos<span class="mm-ico" aria-hidden="true"></span></button>
+      <div class="mm-sub">
+        <a href="ben-inc.html#por-que">Todos</a>
+        <a href="ben-inc.html#comparacion">Comparativa</a>
+        <a href="ben-inc.html#sectores">Sectores</a>
+        <a href="ben-inc.html#simulador">Simulador</a>
+        <a href="ben-inc.html#marco">Marco</a>
+      </div>
+    </div>
+    <a class="mm-link" href="red-comercios.html">Red de comercio</a>
+    <div class="mm-group">
+      <button class="mm-top" aria-expanded="false">Novedades<span class="mm-ico" aria-hidden="true"></span></button>
+      <div class="mm-sub">
+        <a href="novedades.html#destacadas">Destacadas</a>
+        <a href="novedades.html#archivo">Archivo</a>
+        <a href="novedades.html#eventos">Eventos</a>
+      </div>
+    </div>
+    <a class="mm-link" href="inicio.html#contacto">Contactanos</a>
+  </nav>
+</div>
+<script>
+  (function(){
+    var toggle = document.querySelector('.nav-toggle');
+    var menu = document.getElementById('mobileMenu');
+    if (!toggle || !menu) return;
+    var closeBtn = menu.querySelector('.mm-close');
+    function focusables(){ return menu.querySelectorAll('button, a[href]'); }
+    function openMenu(){ menu.classList.add('open'); document.body.style.overflow = 'hidden'; toggle.setAttribute('aria-expanded','true'); closeBtn.focus(); document.addEventListener('keydown', onKey); }
+    function closeMenu(){ menu.classList.remove('open'); document.body.style.overflow = ''; toggle.setAttribute('aria-expanded','false'); document.removeEventListener('keydown', onKey); toggle.focus(); }
+    function onKey(e){
+      if (e.key === 'Escape') { e.preventDefault(); closeMenu(); return; }
+      if (e.key === 'Tab') {
+        var f = focusables(); if (!f.length) return;
+        var first = f[0], last = f[f.length - 1];
+        if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
+        else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
+      }
+    }
+    toggle.addEventListener('click', openMenu);
+    closeBtn.addEventListener('click', closeMenu);
+    menu.querySelectorAll('.mm-top').forEach(function(btn){
+      btn.addEventListener('click', function(){
+        var exp = btn.getAttribute('aria-expanded') === 'true';
+        menu.querySelectorAll('.mm-top').forEach(function(other){
+          if (other !== btn) { other.setAttribute('aria-expanded','false'); other.parentElement.classList.remove('open'); }
+        });
+        btn.setAttribute('aria-expanded', String(!exp));
+        btn.parentElement.classList.toggle('open', !exp);
+      });
+    });
+    menu.querySelectorAll('a').forEach(function(a){ a.addEventListener('click', closeMenu); });
+  })();
+</script>
+
+<!-- PAGE HERO -->
+<section class="page-hero" id="por-que" tabindex="-1">
+  <div class="container">
+    <div class="page-hero-inner">
+      <div class="page-hero-text reveal-left">
+        <div class="eyebrow">Beneficios e incentivos</div>
+        <h1>Tasas <em>bajas</em>, habilitación <em>gratuita</em> y previsibilidad</h1>
+        <p>Un ecosistema diseñado para acompañar el crecimiento de tu empresa.</p>
+      </div>
+      <div class="page-hero-img reveal-scale">
+        <svg id="municipioSvg" viewBox="0 0 440 290" fill="none" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto;display:block;" aria-label="Fábrica y comercio en Tres de Febrero">
+
+          <!-- ══ FÁBRICA ══ -->
+          <!-- Cuerpo principal -->
+          <path class="mp" stroke="#163C68" stroke-width="1.4" d="M18,152 L18,254 L198,254 L198,152 Z"/>
+          <!-- Línea de techo -->
+          <path class="mp" stroke="#163C68" stroke-width="1.8" d="M14,152 L202,152"/>
+          <!-- Chimenea 1 -->
+          <path class="mp" stroke="#163C68" stroke-width="1.2" d="M42,152 L42,76 L62,76 L62,152"/>
+          <!-- Chimenea 2 -->
+          <path class="mp" stroke="#163C68" stroke-width="1.2" d="M95,152 L95,92 L113,92 L113,152"/>
+          <!-- Humo chimenea 1 -->
+          <path class="mp" stroke="#163C68" stroke-width="0.9" d="M52,76 C46,64 60,52 52,40 C44,28 58,16 52,4"/>
+          <!-- Humo chimenea 2 -->
+          <path class="mp" stroke="#163C68" stroke-width="0.9" d="M104,92 C98,80 112,68 104,56 C96,44 110,32 104,20"/>
+          <!-- Tragaluz en techo -->
+          <path class="mp" stroke="#163C68" stroke-width="0.8" d="M128,152 L128,136 L160,136 L160,152"/>
+          <!-- Ventanas industriales fila superior -->
+          <path class="mp" stroke="#163C68" stroke-width="0.7" d="M24,166 L24,188 L84,188 L84,166 Z"/>
+          <path class="mp" stroke="#163C68" stroke-width="0.7" d="M94,166 L94,188 L154,188 L154,166 Z"/>
+          <!-- Ventanas industriales fila inferior -->
+          <path class="mp" stroke="#163C68" stroke-width="0.7" d="M24,202 L24,224 L84,224 L84,202 Z"/>
+          <path class="mp" stroke="#163C68" stroke-width="0.7" d="M94,202 L94,224 L154,224 L154,202 Z"/>
+          <!-- Portón de carga -->
+          <path class="mp" stroke="#163C68" stroke-width="1" d="M162,254 L162,210 L194,210 L194,254"/>
+          <!-- Persiana del portón -->
+          <path class="mp" stroke="#163C68" stroke-width="0.6" d="M164,218 L192,218"/>
+          <path class="mp" stroke="#163C68" stroke-width="0.6" d="M164,228 L192,228"/>
+          <path class="mp" stroke="#163C68" stroke-width="0.6" d="M164,238 L192,238"/>
+          <path class="mp" stroke="#163C68" stroke-width="0.6" d="M164,248 L192,248"/>
+
+          <!-- ══ FAROL ══ -->
+          <path class="mp" stroke="#163C68" stroke-width="1" d="M209,254 L209,196"/>
+          <path class="mp" stroke="#163C68" stroke-width="1" d="M209,196 L222,196 L222,204 L209,204"/>
+
+          <!-- ══ COMERCIO ══ -->
+          <!-- Cuerpo completo (2 pisos) -->
+          <path class="mp" stroke="#163C68" stroke-width="1.4" d="M228,110 L228,254 L426,254 L426,110 Z"/>
+          <!-- Divisor de pisos -->
+          <path class="mp" stroke="#163C68" stroke-width="1" d="M228,182 L426,182"/>
+          <!-- Parapeto del techo -->
+          <path class="mp" stroke="#163C68" stroke-width="1.4" d="M224,110 L224,102 L430,102 L430,110"/>
+          <!-- Vidriera (ventana de exhibición) -->
+          <path class="mp" stroke="#163C68" stroke-width="0.8" d="M236,188 L236,250 L354,250 L354,188 Z"/>
+          <!-- Divisor central de vidriera -->
+          <path class="mp" stroke="#163C68" stroke-width="0.7" d="M295,188 L295,250"/>
+          <!-- Puerta con arco -->
+          <path class="mp" stroke="#163C68" stroke-width="1" d="M366,254 L366,212 A23,23 0 0,1 412,212 L412,254"/>
+          <!-- Marquesina / toldo -->
+          <path class="mp" stroke="#163C68" stroke-width="1" d="M228,182 L228,174 L426,174 L426,182"/>
+          <!-- Cartel del local -->
+          <path class="mp" stroke="#163C68" stroke-width="0.7" d="M228,162 L228,174 L426,174 L426,162 Z"/>
+          <!-- Texto en el cartel (líneas) -->
+          <path class="mp" stroke="#163C68" stroke-width="0.6" d="M242,166 L318,166"/>
+          <path class="mp" stroke="#163C68" stroke-width="0.6" d="M242,170 L290,170"/>
+          <!-- Ventanas piso superior -->
+          <path class="mp" stroke="#163C68" stroke-width="0.7" d="M238,118 L238,154 L280,154 L280,118 Z"/>
+          <path class="mp" stroke="#163C68" stroke-width="0.7" d="M294,118 L294,154 L336,154 L336,118 Z"/>
+          <path class="mp" stroke="#163C68" stroke-width="0.7" d="M350,118 L350,154 L392,154 L392,118 Z"/>
+          <path class="mp" stroke="#163C68" stroke-width="0.7" d="M406,118 L406,154 L420,154 L420,118 Z"/>
+          <!-- Mercancía vidriera izquierda -->
+          <path class="mp" stroke="#163C68" stroke-width="0.6" d="M238,234 L292,234"/>
+          <path class="mp" stroke="#163C68" stroke-width="0.5" d="M248,212 L248,234"/>
+          <path class="mp" stroke="#163C68" stroke-width="0.5" d="M260,206 L260,234"/>
+          <path class="mp" stroke="#163C68" stroke-width="0.5" d="M272,214 L272,234"/>
+          <path class="mp" stroke="#163C68" stroke-width="0.5" d="M284,210 L284,234"/>
+          <!-- Mercancía vidriera derecha -->
+          <path class="mp" stroke="#163C68" stroke-width="0.6" d="M298,234 L352,234"/>
+          <path class="mp" stroke="#163C68" stroke-width="0.6" d="M308,218 a11,11 0 0,1 22,0 a11,11 0 0,1 -22,0"/>
+          <path class="mp" stroke="#163C68" stroke-width="0.5" d="M338,215 L338,234"/>
+          <path class="mp" stroke="#163C68" stroke-width="0.5" d="M348,220 L348,234"/>
+
+          <!-- ══ SUELO ══ -->
+          <path class="mp" stroke="#163C68" stroke-width="1" d="M10,254 L430,254"/>
+          <path class="mp" stroke="#163C68" stroke-width="0.6" d="M10,262 L430,262"/>
+        </svg>
+      </div>
+    </div>
+  </div>
+</section>
+<script>
+(function(){
+  var paths = document.querySelectorAll('#municipioSvg .mp');
+  if (!paths.length) return;
+  if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  requestAnimationFrame(function() {
+    var style = document.createElement('style');
+    var css = '';
+    paths.forEach(function(el, n) {
+      var tl = el.getTotalLength ? el.getTotalLength() : 0;
+      if (!tl) return;
+      var dur = 2 + Math.round(Math.random() * 3);
+      var delay = -Math.round(Math.random() * dur);
+      var ratio = 0.6 + Math.random() * 0.2;
+      el.style.strokeDasharray = (tl * ratio).toFixed(1) + 'px ' + (tl * (1 - ratio)).toFixed(1) + 'px';
+      el.style.strokeOpacity = (0.65 + Math.random() * 0.3).toFixed(2);
+      css += '@keyframes mp' + n + '{from{stroke-dashoffset:' + tl.toFixed(1) + 'px}to{stroke-dashoffset:-' + tl.toFixed(1) + 'px}}';
+      el.style.animation = 'mp' + n + ' ' + dur + 's linear ' + delay + 's infinite';
+    });
+    style.textContent = css;
+    document.head.appendChild(style);
+  });
+})();
+</script>
+
+<!-- TABS BAR (sticky, aparece al scrollear el hero) -->
+<nav class="pagetabs" id="pagetabs" role="tablist" aria-label="Secciones de Beneficios e incentivos">
+  <div class="pagetabs-inner">
+    <button class="ptab active" data-target="por-que-cards" role="tab" aria-selected="true">Todos</button>
+    <button class="ptab" data-target="comparacion" role="tab" aria-selected="false">Comparativa</button>
+    <button class="ptab" data-target="sectores" role="tab" aria-selected="false">Sectores</button>
+    <button class="ptab" data-target="simulador" role="tab" aria-selected="false">Simulador</button>
+    <button class="ptab" data-target="marco" role="tab" aria-selected="false">Marco</button>
+  </div>
+</nav>
+
+<!-- POR QUÉ 3F CARDS -->
+<section class="section stack-section" id="por-que-cards">
+  <div class="container">
+    <div class="section-header center reveal">
+      <div class="comp-eyebrow">Todos los beneficios</div>
+      <h2 class="sec-title" style="text-align:center;">Beneficios para los que generan trabajo</h2>
+      <p class="sec-lead" style="text-align:center;margin:0 auto;">Incentivos reales para empresas que eligen Tres de Febrero.</p>
+    </div>
+    <div class="scope-bar" id="pq-filter-bar" style="margin-bottom:24px;justify-content:center;">
+      <button class="scope-btn active" data-pqcat="destacado">Destacados</button>
+      <button class="scope-btn" data-pqcat="habilitacion">Habilitación <span class="scope-count">3</span></button>
+      <button class="scope-btn" data-pqcat="regimenes">Regímenes <span class="scope-count">3</span></button>
+      <button class="scope-btn" data-pqcat="credito-fiscal">Crédito Fiscal <span class="scope-count">3</span></button>
+      <button class="scope-btn" data-pqcat="eximiciones">Exenciones <span class="scope-count">2</span></button>
+    </div>
+    <div class="por-que-grid" id="pq-grid" data-stagger>
+      <div class="pq-card reveal" data-pqcat="habilitacion destacado">
+        <h3>Habilitación online, instantánea y sin costo</h3>
+        <ul class="pq-list">
+          <li>Más de <strong>70 rubros</strong></li>
+          <li>Trámite <strong>100% digital y gratuito</strong></li>
+          <li>Apertura <strong>inmediata</strong> por declaración jurada</li>
+          <li>Inspección posterior a la apertura</li>
+        </ul>
+      </div>
+      <div class="pq-card reveal" data-pqcat="regimenes destacado">
+        <h3>Estabilidad tributaria (RET)</h3>
+        <ul class="pq-list">
+          <li>Tasas municipales y previsibilidad <strong>fija por 30 años</strong></li>
+          <li>Sin nuevos impuestos ni incrementos</li>
+        </ul>
+      </div>
+      <div class="pq-card reveal" data-pqcat="regimenes destacado">
+        <h3>Incentivo de Generación de Inversiones (RIGI)</h3>
+        <ul class="pq-list">
+          <li><strong>50% de bonificación</strong> en TISH</li>
+          <li><strong>Inversiones > $10M USD</strong> por 10 años</li>
+          <li><strong>Inversiones > $20M USD</strong> o empleabilidad de +100 personas por 15 años</li>
+        </ul>
+      </div>
+      <div class="pq-card reveal" data-pqcat="eximiciones">
+        <h3>TISH más baja del GBA</h3>
+        <ul class="pq-list">
+          <li><strong>Tasa única</strong> a la actividad</li>
+          <li>Alícuota base de solo <strong>0,55%</strong></li>
+          <li><strong>1 año</strong> de exención para nueva inversión</li>
+          <li><strong>2 años</strong> de exención para gastronómicos</li>
+        </ul>
+      </div>
+      <div class="pq-card reveal" data-pqcat="regimenes">
+        <h3>Régimen Simplificado - Monotasa</h3>
+        <ul class="pq-list">
+          <li><strong>Cuota mensual fija</strong> unificada</li>
+          <li>Sin presentación de <strong>DDJJ mensuales</strong></li>
+          <li>Para monotributistas y pequeños contribuyentes</li>
+        </ul>
+      </div>
+      <div class="pq-card reveal" data-pqcat="habilitacion">
+        <h3>Habilitación especial</h3>
+        <ul class="pq-list">
+          <li>Para rubros <strong>fuera del listado instantáneo</strong></li>
+          <li>Iniciá el trámite <strong>100% online</strong></li>
+          <li>Acompañamiento municipal durante el inicio de actividades</li>
+        </ul>
+      </div>
+      <div class="pq-card reveal" data-pqcat="habilitacion">
+        <h3>Habilitación de industria</h3>
+        <ul class="pq-list">
+          <li>Habilitación industrial <strong>gratuita</strong></li>
+          <li>Exención de TISH durante <strong>el primer año</strong></li>
+          <li>Pensado para destinar más recursos a crecer e invertir</li>
+        </ul>
+      </div>
+      <div class="pq-card reveal" data-pqcat="credito-fiscal">
+        <h3>Estímulo al empleo</h3>
+        <ul class="pq-list">
+          <li>Para trabajadores, pasantes o practicantes <strong>residentes en 3F</strong></li>
+          <li>Crédito fiscal del <strong>50% del SMV</strong> por trabajador</li>
+          <li>Beneficio durante <strong>6 meses</strong></li>
+        </ul>
+      </div>
+      <div class="pq-card reveal" data-pqcat="credito-fiscal">
+        <h3>Marquesinas</h3>
+        <ul class="pq-list">
+          <li>Instalá marquesinas o toldos con <strong>proveedores del distrito</strong></li>
+          <li>Crédito fiscal <strong>transferible</strong></li>
+          <li>Descontable en tasas y obligaciones municipales</li>
+        </ul>
+      </div>
+      <div class="pq-card reveal" data-pqcat="credito-fiscal">
+        <h3>Competitividad PyMEs</h3>
+        <ul class="pq-list">
+          <li>Certificaciones técnicas: <strong>ISO, IRAM, Empresa B, HACCP</strong></li>
+          <li>Comercio exterior: ferias, misiones, estudios de mercado</li>
+          <li>Capacitación, asistencia técnica y mejoras ambientales</li>
+          <li>Crédito fiscal <strong>transferible</strong></li>
+        </ul>
+      </div>
+      <div class="pq-card reveal" data-pqcat="eximiciones">
+        <h3>Exención de patente</h3>
+        <ul class="pq-list">
+          <li>Para vehículos de <strong>uso comercial</strong></li>
+          <li>Eximición de vehículo nuevo o renovación de eximido en 2024</li>
+          <li>Si usás tu vehículo para trabajar, te bonificamos la patente</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- COMPARACIÓN -->
+<section class="section alt stack-section" id="comparacion">
+  <div class="container">
+    <div class="section-header reveal" style="text-align:center">
+      <div class="comp-eyebrow">3F vs. Promedio GBA</div>
+      <h2 class="sec-title">Comparación que genera ventajas competitivas</h2>
+      <p class="sec-lead" style="margin:0 auto">Análisis comparativo de costos, tiempos y beneficios concretos entre Tres de Febrero y el promedio de los 24 partidos del Gran Buenos Aires.</p>
+    </div>
+    <div class="comp-wrap reveal">
+      <table class="comp-table">
+        <thead>
+          <tr>
+            <th>Concepto</th>
+            <th><span class="th-long">Tres de Febrero</span><span class="th-short">3F</span></th>
+            <th><span class="th-long">Promedio GBA</span><span class="th-short">GBA</span></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Costo de habilitación comercial</td>
+            <td><span class="comp-check">$0 (gratuita)</span></td>
+            <td>— Variable</td>
+          </tr>
+          <tr>
+            <td>Tiempo de habilitación</td>
+            <td><span class="comp-check">Instantánea</span></td>
+            <td>— Desde 90 días</td>
+          </tr>
+          <tr>
+            <td>TISH promedio</td>
+            <td><span class="comp-check">0,55%</span></td>
+            <td>— 1,5%</td>
+          </tr>
+          <tr>
+            <td>Estabilidad tributaria</td>
+            <td><span class="comp-check">30 años</span></td>
+            <td>— Sin garantía</td>
+          </tr>
+          <tr>
+            <td>RIGI Municipal</td>
+            <td><span class="comp-check">Posee</span></td>
+            <td>— No posee</td>
+          </tr>
+          <tr>
+            <td>Crédito Fiscal</td>
+            <td>
+              <div class="comp-checklist">
+                <span class="comp-checklist-item">Competitividad</span>
+                <span class="comp-checklist-item">Empleo</span>
+                <span class="comp-checklist-item">Marquesinas</span>
+              </div>
+            </td>
+            <td>— No vigente</td>
+          </tr>
+          
+        </tbody>
+      </table>
+      <p class="comp-legend"><strong>3F</strong> = Tres de Febrero &nbsp;·&nbsp; <strong>GBA</strong> = Promedio de los 24 partidos del Gran Buenos Aires</p>
+    </div>
+  </div>
+</section>
+
+<!-- BENEFICIOS POR SECTOR -->
+<section class="section dark stack-section" id="sectores">
+  <div class="container">
+    <div class="section-header reveal" style="display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:16px;margin-bottom:32px;">
+      <div>
+        <div class="eyebrow white">Beneficios por sector</div>
+        <h2 class="sec-title white">Encontrá los beneficios según tu rubro</h2>
+      </div>
+    </div>
+
+    <div class="sector-card reveal">
+      <div class="sector-tabs" role="tablist" aria-label="Sectores económicos">
+        <button class="stab on" role="tab" aria-selected="true" onclick="showSector('industria',this)">Industria</button>
+        <button class="stab" role="tab" aria-selected="false" onclick="showSector('comercio',this)">Comercio</button>
+        <button class="stab" role="tab" aria-selected="false" onclick="showSector('hipermercado',this)">Hipermercado</button>
+        <button class="stab" role="tab" aria-selected="false" onclick="showSector('gastronomico',this)">Gastronómico</button>
+        <button class="stab" role="tab" aria-selected="false" onclick="showSector('financiero',this)">Sector Financiero</button>
+        <button class="stab" role="tab" aria-selected="false" onclick="showSector('ecommerce',this)">Ventas por mayor</button>
+        <button class="stab" role="tab" aria-selected="false" onclick="showSector('salud',this)">Salud</button>
+      </div>
+
+      <!-- INDUSTRIA -->
+      <div id="industria" class="sector-panel on" role="tabpanel">
+        <div class="sp-left">
+          <div class="sp-rows">
+            <div class="sp-row"><span class="sp-row-l">Habilitación</span><span class="sp-row-r">Gratuita</span></div>
+            <div class="sp-row"><span class="sp-row-l">Exención Tasa por Inspección de Seguridad e Higiene y Desarrollo de Producción</span><span class="sp-row-r">1 año</span></div>
+            <div class="sp-row sp-row-list"><span class="sp-row-l">Crédito Fiscal</span><div class="sp-checklist"><span>Estímulo al empleo</span><span>Competitividad PyME</span></div></div>
+            <div class="sp-row"><span class="sp-row-l">Régimen de estabilidad tributaria (RET)</span><span class="sp-row-r">30 años</span></div>
+            <div class="sp-row"><span class="sp-row-l">Régimen de Incentivo de Generación de Inversiones (RIGI)</span><span class="sp-row-r">Aplicable</span></div>
+            <div class="sp-row"><span class="sp-row-l">Patente municipal*</span><span class="sp-row-r">Exentas</span></div>
+            <p style="margin-top:6px;font-size:12px;color:rgba(255,255,255,.55);font-weight:500;">*para vehículos de uso comercial.</p>
+          </div>
+        </div>
+        <div class="sp-right">
+          <div class="sp-tish">
+            <div class="sp-tish-eye">Alícuota TISH</div>
+            <div class="sp-tish-row min"><div class="sp-tish-num">0,50%</div><div class="sp-tish-lbl">Mínimo</div></div>
+            <div class="sp-tish-connector"></div>
+            <div class="sp-tish-row max"><div class="sp-tish-num">0,87%</div><div class="sp-tish-lbl">Máximo</div></div>
+            <div class="sp-tish-note">Según facturación anual</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- COMERCIO -->
+      <div id="comercio" class="sector-panel" role="tabpanel">
+        <div class="sp-left">
+          <div class="sp-rows">
+            <div class="sp-row"><span class="sp-row-l">Habilitación</span><span class="sp-row-r">Instantánea, gratuita y online</span></div>
+            <div class="sp-row"><span class="sp-row-l">Exención Tasa por Inspección de Seguridad e Higiene y Desarrollo de Producción</span><span class="sp-row-r">1 año</span></div>
+            <div class="sp-row sp-row-list"><span class="sp-row-l">Crédito Fiscal</span><div class="sp-checklist"><span>Estímulo al empleo</span><span>Marquesinas</span><span>Competitividad PyME</span></div></div>
+            <div class="sp-row"><span class="sp-row-l">Régimen de estabilidad tributaria (RET)</span><span class="sp-row-r">30 años</span></div>
+            <div class="sp-row"><span class="sp-row-l">Régimen de Incentivo de Generación de Inversiones (RIGI)</span><span class="sp-row-r">Aplicable</span></div>
+            <div class="sp-row"><span class="sp-row-l">Patente municipal*</span><span class="sp-row-r">Exentas</span></div>
+            <p style="margin-top:6px;font-size:12px;color:rgba(255,255,255,.55);font-weight:500;">*para vehículos de uso comercial.</p>
+          </div>
+        </div>
+        <div class="sp-right">
+          <div class="sp-tish">
+            <div class="sp-tish-eye">Alícuota TISH</div>
+            <div class="sp-tish-row min"><div class="sp-tish-num">0,50%</div><div class="sp-tish-lbl">Mínimo</div></div>
+            <div class="sp-tish-connector"></div>
+            <div class="sp-tish-row max"><div class="sp-tish-num">0,87%</div><div class="sp-tish-lbl">Máximo</div></div>
+            <div class="sp-tish-note">Según facturación anual</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- HIPERMERCADO -->
+      <div id="hipermercado" class="sector-panel" role="tabpanel">
+        <div class="sp-left">
+          <div class="sp-rows">
+            <div class="sp-row"><span class="sp-row-l">Habilitación</span><span class="sp-row-r">Instantánea, gratuita y online</span></div>
+            <div class="sp-row"><span class="sp-row-l">Exención Tasa por Inspección de Seguridad e Higiene y Desarrollo de Producción</span><span class="sp-row-r">2 años</span></div>
+            <div class="sp-row sp-row-list"><span class="sp-row-l">Crédito Fiscal</span><div class="sp-checklist"><span>Estímulo al empleo</span><span>Marquesinas</span><span>Competitividad PyME</span></div></div>
+            <div class="sp-row"><span class="sp-row-l">Régimen de estabilidad tributaria (RET)</span><span class="sp-row-r">30 años</span></div>
+            <div class="sp-row"><span class="sp-row-l">Régimen de Incentivo de Generación de Inversiones (RIGI)</span><span class="sp-row-r">Aplicable</span></div>
+            <div class="sp-row"><span class="sp-row-l">Patente municipal*</span><span class="sp-row-r">Exentas</span></div>
+            <p style="margin-top:6px;font-size:12px;color:rgba(255,255,255,.55);font-weight:500;">*para vehículos de uso comercial.</p>
+          </div>
+        </div>
+        <div class="sp-right">
+          <div class="sp-tish">
+            <div class="sp-tish-eye">Alícuota TISH</div>
+            <div class="sp-tish-row min"><div class="sp-tish-num">0,50%</div><div class="sp-tish-lbl">Mínimo</div></div>
+            <div class="sp-tish-connector"></div>
+            <div class="sp-tish-row max"><div class="sp-tish-num">0,87%</div><div class="sp-tish-lbl">Máximo</div></div>
+            <div class="sp-tish-note">Según facturación anual</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- GASTRONÓMICO -->
+      <div id="gastronomico" class="sector-panel" role="tabpanel">
+        <div class="sp-left">
+          <div class="sp-rows">
+            <div class="sp-row"><span class="sp-row-l">Habilitación</span><span class="sp-row-r">Instantánea, gratuita y online</span></div>
+            <div class="sp-row"><span class="sp-row-l">Exención Tasa por Inspección de Seguridad e Higiene y Desarrollo de Producción</span><span class="sp-row-r">2 años</span></div>
+            <div class="sp-row sp-row-list"><span class="sp-row-l">Crédito Fiscal</span><div class="sp-checklist"><span>Estímulo al empleo</span><span>Marquesinas</span><span>Competitividad PyME</span></div></div>
+            <div class="sp-row"><span class="sp-row-l">Régimen de estabilidad tributaria (RET)</span><span class="sp-row-r">30 años</span></div>
+            <div class="sp-row"><span class="sp-row-l">Régimen de Incentivo de Generación de Inversiones (RIGI)</span><span class="sp-row-r">Aplicable</span></div>
+            <div class="sp-row"><span class="sp-row-l">Patente municipal*</span><span class="sp-row-r">Exentas</span></div>
+            <p style="margin-top:6px;font-size:12px;color:rgba(255,255,255,.55);font-weight:500;">*para vehículos de uso comercial.</p>
+          </div>
+        </div>
+        <div class="sp-right">
+          <div class="sp-tish">
+            <div class="sp-tish-eye">Alícuota TISH</div>
+            <div class="sp-tish-row min"><div class="sp-tish-num">0,50%</div><div class="sp-tish-lbl">Mínimo</div></div>
+            <div class="sp-tish-connector"></div>
+            <div class="sp-tish-row max"><div class="sp-tish-num">0,87%</div><div class="sp-tish-lbl">Máximo</div></div>
+            <div class="sp-tish-note">Según facturación anual</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- SECTOR FINANCIERO -->
+      <div id="financiero" class="sector-panel" role="tabpanel">
+        <div class="sp-left">
+          <div class="sp-rows">
+            <div class="sp-row"><span class="sp-row-l">Habilitación</span><span class="sp-row-r">Gratuita</span></div>
+            <div class="sp-row"><span class="sp-row-l">Exención Tasa por Inspección de Seguridad e Higiene y Desarrollo de Producción</span><span class="sp-row-r">1 año</span></div>
+            <div class="sp-row sp-row-list"><span class="sp-row-l">Crédito Fiscal</span><div class="sp-checklist"><span>Estímulo al empleo</span><span>Marquesinas</span><span>Competitividad PyME</span></div></div>
+            <div class="sp-row"><span class="sp-row-l">Régimen de estabilidad tributaria (RET)</span><span class="sp-row-r">30 años</span></div>
+            <div class="sp-row"><span class="sp-row-l">Régimen de Incentivo de Generación de Inversiones (RIGI)</span><span class="sp-row-r">Aplicable</span></div>
+            <div class="sp-row"><span class="sp-row-l">Patente municipal*</span><span class="sp-row-r">Exentas</span></div>
+            <p style="margin-top:6px;font-size:12px;color:rgba(255,255,255,.55);font-weight:500;">*para vehículos de uso comercial.</p>
+          </div>
+        </div>
+        <div class="sp-right">
+          <div class="sp-tish">
+            <div class="sp-tish-eye">Alícuota TISH</div>
+            <div class="sp-tish-row min"><div class="sp-tish-num">0,42%</div><div class="sp-tish-lbl">Mínimo</div></div>
+            <div class="sp-tish-connector"></div>
+            <div class="sp-tish-row max"><div class="sp-tish-num">0,55%</div><div class="sp-tish-lbl">Máximo</div></div>
+            <div class="sp-tish-note">Según facturación anual</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- VENTAS POR MAYOR -->
+      <div id="ecommerce" class="sector-panel" role="tabpanel">
+        <div class="sp-left">
+          <div class="sp-rows">
+            <div class="sp-row"><span class="sp-row-l">Habilitación</span><span class="sp-row-r">Gratuita</span></div>
+            <div class="sp-row"><span class="sp-row-l">Exención Tasa por Inspección de Seguridad e Higiene y Desarrollo de Producción</span><span class="sp-row-r">1 año</span></div>
+            <div class="sp-row sp-row-list"><span class="sp-row-l">Crédito Fiscal</span><div class="sp-checklist"><span>Estímulo al empleo</span><span>Marquesinas</span><span>Competitividad PyME</span></div></div>
+            <div class="sp-row"><span class="sp-row-l">Régimen de estabilidad tributaria (RET)</span><span class="sp-row-r">30 años</span></div>
+            <div class="sp-row"><span class="sp-row-l">Régimen de Incentivo de Generación de Inversiones (RIGI)</span><span class="sp-row-r">Aplicable</span></div>
+            <div class="sp-row"><span class="sp-row-l">Patente municipal*</span><span class="sp-row-r">Exentas</span></div>
+            <p style="margin-top:6px;font-size:12px;color:rgba(255,255,255,.55);font-weight:500;">*para vehículos de uso comercial.</p>
+          </div>
+        </div>
+        <div class="sp-right">
+          <div class="sp-tish">
+            <div class="sp-tish-eye">Alícuota TISH</div>
+            <div class="sp-tish-row min"><div class="sp-tish-num">0,30%</div><div class="sp-tish-lbl">Mínimo</div></div>
+            <div class="sp-tish-connector"></div>
+            <div class="sp-tish-row max"><div class="sp-tish-num">0,39%</div><div class="sp-tish-lbl">Máximo</div></div>
+            <div class="sp-tish-note">Según facturación anual</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- SALUD -->
+      <div id="salud" class="sector-panel" role="tabpanel">
+        <div class="sp-left">
+          <div class="sp-rows">
+            <div class="sp-row"><span class="sp-row-l">Habilitación</span><span class="sp-row-r">Gratuita</span></div>
+            <div class="sp-row"><span class="sp-row-l">Exención Tasa por Inspección de Seguridad e Higiene y Desarrollo de Producción</span><span class="sp-row-r">1 año</span></div>
+            <div class="sp-row sp-row-list"><span class="sp-row-l">Crédito Fiscal</span><div class="sp-checklist"><span>Estímulo al empleo</span><span>Competitividad PyME</span></div></div>
+            <div class="sp-row"><span class="sp-row-l">Régimen de estabilidad tributaria (RET)</span><span class="sp-row-r">30 años</span></div>
+            <div class="sp-row"><span class="sp-row-l">Régimen de Incentivo de Generación de Inversiones (RIGI)</span><span class="sp-row-r">Aplicable</span></div>
+            <div class="sp-row"><span class="sp-row-l">Patente municipal*</span><span class="sp-row-r">Exentas</span></div>
+            <p style="margin-top:6px;font-size:12px;color:rgba(255,255,255,.55);font-weight:500;">*para vehículos de uso comercial.</p>
+          </div>
+        </div>
+        <div class="sp-right">
+          <div class="sp-tish">
+            <div class="sp-tish-eye">Alícuota TISH</div>
+            <div class="sp-tish-row min"><div class="sp-tish-num">0,30%</div><div class="sp-tish-lbl">Mínimo</div></div>
+            <div class="sp-tish-connector"></div>
+            <div class="sp-tish-row max"><div class="sp-tish-num">0,39%</div><div class="sp-tish-lbl">Máximo</div></div>
+            <div class="sp-tish-note">Según facturación anual</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SIMULADOR TISH -->
+<section class="section alt stack-section" id="simulador">
+  <div class="container">
+    <div class="container">
+    <div class="section-header reveal" style="display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:16px;margin-bottom:32px;">
+      <div>
+        <div class="eyebrow white">Simulador TISH</div>
+        <h2 class="sec-title">Calculá cuánto pagarías de TISH en Tres de Febrero</h2>
+      </div>
+    </div>
+    <div class="tish-calc reveal">
+      <div class="tish-compare-wrap" style="display:none">
+        <div class="tish-results">
+          <div class="tish-result-card tres3f">
+            <div class="tish-rc-header">
+              <div class="tish-rc-label">Tres de Febrero</div>
+              <div class="tish-rate-badge" id="tish-active-rate">0,50 %</div>
+            </div>
+            <div class="tish-rc-amount" id="tc-3f-m">—</div>
+            <div class="tish-rc-sub">por mes · <span id="tc-3f-a">—</span> al año</div>
+          </div>
+          <div class="tish-result-card gba-avg">
+            <div class="tish-rc-label">Promedio GBA</div>
+            <div class="tish-rc-amount" id="tc-gba-m">—</div>
+            <div class="tish-rc-sub">por mes · <span id="tc-gba-a">—</span> al año</div>
+          </div>
+          <div class="tish-result-card savings">
+            <div class="savings-icon">
+              <svg width="18" height="18" fill="none" stroke="var(--naranja)" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>
+            </div>
+            <div class="savings-text">
+              <div class="tish-rc-label">Ahorro anual estimado</div>
+              <div class="tish-rc-amount" id="tc-save">—</div>
+              <div class="tish-rc-sub">vs. promedio GBA</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="tish-ref">
+        <div class="tish-ref-lbl">Alícuotas por sector y tramo de facturación</div>
+        <div id="tish-ref-body"></div>
+      </div>
+    </div>
+  </div>
+</section>
+<script>
+(function(){
+  const ALICUOTAS = {
+    general:    [0.0050, 0.0063, 0.0075, 0.0087],
+    financiero: [0.0042, 0.0046, 0.0051, 0.0055],
+    minorista:  [0.0030, 0.0033, 0.0036, 0.0039],
+  };
+  const GBA = [0.008, 0.010, 0.012, 0.015];
+  const TRAMO_AMOUNTS = [347e6, 1737e6, 6950e6, 14000e6];
+  const TRAMO_LBLS = ['Hasta $695M', '$695M–$2.780M', '$2.780M–$11.120M', '+$11.120M'];
+  const SECTOR_NAMES = {
+    general:    'Industria · Comercio · Hipermercado · Gastronómico',
+    financiero: 'Sector Financiero',
+    minorista:  'Ventas por mayor · Salud',
+  };
+
+  let sector = 'general', tramo = 0;
+
+  function fmt(n){ return '$'+Math.round(n).toString().replace(/\B(?=(\d{3})+(?!\d))/g,'.'); }
+  function fmtPct(p){ return (p*100).toFixed(2).replace('.',',')+' %'; }
+
+  function update(){
+    const amount = TRAMO_AMOUNTS[tramo];
+    const ali = ALICUOTAS[sector][tramo];
+    const gba = GBA[tramo];
+    const a3f = amount*ali, m3f = a3f/12;
+    const agba = amount*gba, mgba = agba/12;
+    document.getElementById('tc-3f-m').textContent  = fmt(m3f);
+    document.getElementById('tc-3f-a').textContent  = fmt(a3f);
+    document.getElementById('tc-gba-m').textContent = fmt(mgba);
+    document.getElementById('tc-gba-a').textContent = fmt(agba);
+    document.getElementById('tc-save').textContent  = fmt(Math.max(0, agba-a3f));
+
+    document.querySelectorAll('#tish-tramo-bar .tish-stab').forEach((el,i)=>{
+      el.classList.toggle('on', i===tramo);
+    });
+    document.getElementById('tish-active-rate').textContent = fmtPct(ALICUOTAS[sector][tramo]);
+
+    const sectors = Object.keys(ALICUOTAS);
+    if (window.innerWidth <= 600) {
+      let html = '<div class="trc-cards">';
+      sectors.forEach(s => {
+        html += `<div class="trc-card">`;
+        html += `<div class="trc-head">${SECTOR_NAMES[s]}</div>`;
+        ALICUOTAS[s].forEach((r, i) => {
+          const hl = i === tramo;
+          html += `<div class="trc-rate${hl ? ' trc-hl' : ''}">`;
+          html += `<span class="trc-lbl">${TRAMO_LBLS[i]}</span>`;
+          html += `<span class="trc-val">${fmtPct(r)}</span>`;
+          html += '</div>';
+        });
+        html += '</div>';
+      });
+      html += '</div>';
+      document.getElementById('tish-ref-body').innerHTML = html;
+    } else {
+      let html = '<table class="tish-ref-table"><thead><tr><th>Sector</th>';
+      TRAMO_LBLS.forEach((l,i)=>{ html+=`<th class="${i===tramo?'hl-col':''}">${l}</th>`; });
+      html += '</tr></thead><tbody>';
+      sectors.forEach(s=>{
+        html += `<tr class="${s===sector?'hl-row':''}"><td>${SECTOR_NAMES[s]}</td>`;
+        ALICUOTAS[s].forEach((r,i)=>{
+          const cell = s===sector&&i===tramo;
+          html += `<td class="${cell?'hl-cell':i===tramo?'hl-col':''}">${fmtPct(r)}</td>`;
+        });
+        html += '</tr>';
+      });
+      html += '</tbody></table>';
+      document.getElementById('tish-ref-body').innerHTML = html;
+    }
+  }
+
+  document.querySelectorAll('#tish-tramo-bar .tish-stab').forEach(el=>{
+    el.addEventListener('click', function(){
+      tramo = +this.dataset.t;
+      update();
+    });
+  });
+
+  document.querySelectorAll('#tish-sectors .tish-stab').forEach(btn=>{
+    btn.addEventListener('click',function(){
+      document.querySelectorAll('#tish-sectors .tish-stab').forEach(b=>b.classList.remove('on'));
+      this.classList.add('on');
+      sector = this.dataset.sector;
+      update();
+    });
+  });
+
+  update();
+})();
+</script>
+
+<!-- MARCO NORMATIVO -->
+<section class="section stack-section" id="marco">
+  <div class="container">
+    <div class="mn-wrap reveal">
+
+      <div class="mn-left">
+        <div class="mn-eyebrow">Marco normativo</div>
+        <h2 class="mn-title">El respaldo legal de tu inversión</h2>
+        <div class="mn-underline"></div>
+        <p class="mn-desc">Descargá las ordenanzas y normativas que regulan beneficios fiscales, habilitaciones e incentivos para empresas en Tres de Febrero.</p>
+      </div>
+
+      <div class="mn-grid">
+
+        <div class="mn-card">
+          <div class="mn-card-icon"><svg width="20" height="22" viewBox="0 0 20 22" fill="none"><path d="M12 1H4a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V7l-6-6z" stroke="#F69321" stroke-width="1.5" stroke-linejoin="round"/><path d="M12 1v6h6" stroke="#F69321" stroke-width="1.5"/><path d="M6 12h8M6 16h5" stroke="#F69321" stroke-width="1.2" stroke-linecap="round"/></svg></div>
+          <div class="mn-card-title">Ordenanza Fiscal</div>
+          <div class="mn-card-desc">Descargá el documento completo de la Ordenanza Fiscal 2025.</div>
+          <div class="mn-card-foot"><a href="#" class="mn-dl" aria-label="Descargar Ordenanza Fiscal"><svg width="13" height="13" viewBox="0 0 13 13" fill="none"><path d="M6.5 1v7M4 5.5l2.5 2.5L9 5.5M1.5 11h10" stroke="rgba(255,255,255,.75)" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></a></div>
+        </div>
+
+        <div class="mn-card">
+          <div class="mn-card-icon"><svg width="20" height="22" viewBox="0 0 20 22" fill="none"><path d="M12 1H4a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V7l-6-6z" stroke="#F69321" stroke-width="1.5" stroke-linejoin="round"/><path d="M12 1v6h6" stroke="#F69321" stroke-width="1.5"/><path d="M6 12h8M6 16h5" stroke="#F69321" stroke-width="1.2" stroke-linecap="round"/></svg></div>
+          <div class="mn-card-title">Ordenanza Impositiva</div>
+          <div class="mn-card-desc">Descargá el documento completo de la Ordenanza Impositiva 2025.</div>
+          <div class="mn-card-foot"><a href="#" class="mn-dl" aria-label="Descargar Ordenanza Impositiva"><svg width="13" height="13" viewBox="0 0 13 13" fill="none"><path d="M6.5 1v7M4 5.5l2.5 2.5L9 5.5M1.5 11h10" stroke="rgba(255,255,255,.75)" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></a></div>
+        </div>
+
+        <div class="mn-card">
+          <div class="mn-card-icon"><svg width="20" height="22" viewBox="0 0 20 22" fill="none"><path d="M12 1H4a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V7l-6-6z" stroke="#F69321" stroke-width="1.5" stroke-linejoin="round"/><path d="M12 1v6h6" stroke="#F69321" stroke-width="1.5"/><path d="M6 12h8M6 16h5" stroke="#F69321" stroke-width="1.2" stroke-linecap="round"/></svg></div>
+          <div class="mn-card-title">Promoción de Trabajo y Producción + Crédito Fiscal</div>
+          <div class="mn-card-desc">Régimen de competitividad PyME con crédito fiscal transferible.</div>
+          <div class="mn-card-foot"><a href="#" class="mn-dl" aria-label="Descargar Ordenanza de Promoción de Trabajo y Producción"><svg width="13" height="13" viewBox="0 0 13 13" fill="none"><path d="M6.5 1v7M4 5.5l2.5 2.5L9 5.5M1.5 11h10" stroke="rgba(255,255,255,.75)" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></a></div>
+        </div>
+
+        <div class="mn-card">
+          <div class="mn-card-icon"><svg width="20" height="22" viewBox="0 0 20 22" fill="none"><path d="M12 1H4a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V7l-6-6z" stroke="#F69321" stroke-width="1.5" stroke-linejoin="round"/><path d="M12 1v6h6" stroke="#F69321" stroke-width="1.5"/><path d="M6 12h8M6 16h5" stroke="#F69321" stroke-width="1.2" stroke-linecap="round"/></svg></div>
+          <div class="mn-card-title">Régimen Simplificado</div>
+          <div class="mn-card-desc">Marco normativo para actividades con régimen tributario simplificado.</div>
+          <div class="mn-card-foot"><a href="#" class="mn-dl" aria-label="Descargar Ordenanza de Régimen Simplificado"><svg width="13" height="13" viewBox="0 0 13 13" fill="none"><path d="M6.5 1v7M4 5.5l2.5 2.5L9 5.5M1.5 11h10" stroke="rgba(255,255,255,.75)" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></a></div>
+        </div>
+
+        <div class="mn-card">
+          <div class="mn-card-icon"><svg width="20" height="22" viewBox="0 0 20 22" fill="none"><path d="M12 1H4a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V7l-6-6z" stroke="#F69321" stroke-width="1.5" stroke-linejoin="round"/><path d="M12 1v6h6" stroke="#F69321" stroke-width="1.5"/><path d="M6 12h8M6 16h5" stroke="#F69321" stroke-width="1.2" stroke-linecap="round"/></svg></div>
+          <div class="mn-card-title">Estabilidad Tributaria</div>
+          <div class="mn-card-desc">RET — 30 años de estabilidad fiscal garantizada para inversiones radicadas.</div>
+          <div class="mn-card-foot"><a href="#" class="mn-dl" aria-label="Descargar Ordenanza de Estabilidad Tributaria"><svg width="13" height="13" viewBox="0 0 13 13" fill="none"><path d="M6.5 1v7M4 5.5l2.5 2.5L9 5.5M1.5 11h10" stroke="rgba(255,255,255,.75)" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></a></div>
+        </div>
+
+        <div class="mn-card">
+          <div class="mn-card-icon"><svg width="20" height="22" viewBox="0 0 20 22" fill="none"><path d="M12 1H4a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V7l-6-6z" stroke="#F69321" stroke-width="1.5" stroke-linejoin="round"/><path d="M12 1v6h6" stroke="#F69321" stroke-width="1.5"/><path d="M6 12h8M6 16h5" stroke="#F69321" stroke-width="1.2" stroke-linecap="round"/></svg></div>
+          <div class="mn-card-title">Régimen de Incentivos de Generación de Inversiones</div>
+          <div class="mn-card-desc">RIGI — Marco de incentivos fiscales para grandes inversiones productivas.</div>
+          <div class="mn-card-foot"><a href="#" class="mn-dl" aria-label="Descargar Ordenanza de Régimen de Incentivos RIGI"><svg width="13" height="13" viewBox="0 0 13 13" fill="none"><path d="M6.5 1v7M4 5.5l2.5 2.5L9 5.5M1.5 11h10" stroke="rgba(255,255,255,.75)" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></a></div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer-inner">
+      <img loading="lazy" decoding="async" src="img/logo.png" alt="Municipalidad de Tres de Febrero" class="footer-logo-img">
+      <div class="footer-bottom">
+        <div class="footer-social">
+          <a href="#" title="Facebook"><img src="img/iconos/facebook.svg" alt="Facebook"></a>
+          <a href="#" title="Instagram"><img src="img/iconos/instagram.svg" alt="Instagram"></a>
+          <a href="#" title="X / Twitter"><img src="img/iconos/X.svg" alt="X / Twitter"></a>
+          <a href="#" title="YouTube"><img src="img/iconos/youtube.svg" alt="YouTube"></a>
+          <a href="#" title="LinkedIn"><img src="img/iconos/linkedin.svg" alt="LinkedIn"></a>
+          <a href="#" title="Email"><img src="img/iconos/mail.svg" alt="Email"></a>
+          <a href="#" title="WhatsApp"><img src="img/iconos/whatsapp.svg" alt="WhatsApp"></a>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="animations.js"></script>
+<script>
+// Filtros Por qué 3F
+(function() {
+  var cards = document.querySelectorAll('#pq-grid .pq-card');
+  // Ocultar las que no son destacado al inicio
+  cards.forEach(function(c) {
+    if (!c.dataset.pqcat.split(' ').includes('destacado')) c.style.display = 'none';
+  });
+  document.querySelectorAll('#pq-filter-bar .scope-btn').forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      document.querySelectorAll('#pq-filter-bar .scope-btn').forEach(function(b){ b.classList.remove('active'); });
+      this.classList.add('active');
+      var cat = this.dataset.pqcat;
+      cards.forEach(function(c) {
+        c.style.display = c.dataset.pqcat.split(' ').includes(cat) ? '' : 'none';
+      });
+    });
+  });
+})();
+
+function showSector(id, btn) {
+  document.querySelectorAll('.sector-panel').forEach(function(p){ p.classList.remove('on'); });
+  document.querySelectorAll('.stab').forEach(function(b){ b.classList.remove('on'); b.setAttribute('aria-selected','false'); });
+  document.getElementById(id).classList.add('on');
+  btn.classList.add('on');
+  btn.setAttribute('aria-selected','true');
+}
+</script>
+
+<script>
+// Sticky stack tabs: click → scroll to section; scroll → update active tab
+(function() {
+  var tabs     = document.querySelectorAll('#pagetabs .ptab');
+  var tabBarH  = 112; // 60px nav + 52px tabs
+
+  var sections = [];
+  tabs.forEach(function(tab) {
+    var el = document.getElementById(tab.dataset.target);
+    if (el) sections.push({ tab: tab, el: el });
+  });
+
+  // Respetar "prefers-reduced-motion" para el scroll programático
+  var reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  function setActive(tab) {
+    tabs.forEach(function(t){
+      t.classList.remove('active');
+      t.setAttribute('aria-selected','false');
+      t.setAttribute('tabindex','-1');     // sólo el activo es tabulable (patrón tablist)
+    });
+    tab.classList.add('active');
+    tab.setAttribute('aria-selected','true');
+    tab.setAttribute('tabindex','0');
+  }
+
+  // Hacer cada sección enfocable para que teclado/lector de pantalla
+  // "aterricen" en ella al navegar, sin marco de foco visible molesto.
+  sections.forEach(function(s){
+    s.el.setAttribute('tabindex','-1');
+    s.el.style.outline = 'none';
+  });
+
+  var lockUntil = 0; // durante el scroll programático ignoramos el scroll-spy
+  var tabBar = document.getElementById('pagetabs');
+  var pinNatural = 0;
+  function measurePin() {
+    // offsetTop de un sticky "pegado" devuelve su posición desplazada (scrollY+60);
+    // con position:static temporal medimos su posición natural real.
+    var prev = tabBar.style.position;
+    tabBar.style.position = 'static';
+    pinNatural = tabBar.offsetTop;
+    tabBar.style.position = prev;
+  }
+  measurePin();
+  window.addEventListener('load', measurePin);
+  window.addEventListener('resize', measurePin);
+  function pinPoint() { return pinNatural - 60; } // scroll donde la tool bar se fija
+  function clearActive() {
+    tabs.forEach(function(t, i){
+      t.classList.remove('active'); t.setAttribute('aria-selected','false'); t.setAttribute('tabindex', i === 0 ? '0' : '-1');
+    });
+  }
+
+  function goToSection(tab, focusIt) {
+    var el = document.getElementById(tab.dataset.target);
+    if (!el) return;
+    setActive(tab);
+    lockUntil = Date.now() + 800; // mantener este tab activo hasta terminar el scroll
+    var target = Math.max(el.offsetTop - tabBarH, pinPoint());
+    document.documentElement.style.scrollSnapType = 'none';
+    window.scrollTo({ top: target, behavior: reduceMotion ? 'auto' : 'smooth' });
+    // Reactivar el snap recién cuando el scroll se detiene (un timeout fijo
+    // cortaba los desplazamientos largos, p. ej. volver a una sección de arriba).
+    if (reduceMotion) {
+      document.documentElement.style.scrollSnapType = '';
+    } else {
+      var idleTimer;
+      var onIdle = function() {
+        lockUntil = Date.now() + 250;
+        clearTimeout(idleTimer);
+        idleTimer = setTimeout(function() {
+          window.removeEventListener('scroll', onIdle);
+          document.documentElement.style.scrollSnapType = '';
+        }, 140);
+      };
+      window.addEventListener('scroll', onIdle, { passive: true });
+      onIdle();
+    }
+    if (focusIt) {
+      // mover el foco a la sección sin volver a scrollear de golpe
+      window.setTimeout(function(){ el.focus({ preventScroll: true }); }, reduceMotion ? 0 : 400);
+    }
+  }
+
+  // Click → ir a la sección
+  tabs.forEach(function(tab) {
+    tab.addEventListener('click', function(){ goToSection(tab, false); });
+  });
+
+  // Navegación con teclado en la barra de tabs (patrón ARIA tablist):
+  // ← → / Home / End mueven el foco y activan la sección.
+  if (tabBar) {
+    tabBar.addEventListener('keydown', function(e) {
+      var list = Array.prototype.slice.call(tabs);
+      var i = list.indexOf(document.activeElement);
+      if (i === -1) return;
+      var next = null;
+      if (e.key === 'ArrowRight' || e.key === 'ArrowDown') next = list[(i + 1) % list.length];
+      else if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') next = list[(i - 1 + list.length) % list.length];
+      else if (e.key === 'Home') next = list[0];
+      else if (e.key === 'End') next = list[list.length - 1];
+      else return;
+      e.preventDefault();
+      next.focus();
+      goToSection(next, true);
+    });
+  }
+
+  // Scroll-spy: la última sección cuyo borde superior ya pasó la tool bar
+  function onScroll() {
+    if (Date.now() < lockUntil) return; // no pelear con el click
+    var scrollY = window.scrollY;
+    // Mientras la tool bar no esté fija arriba, ningún tab activo (consistente con inicio)
+    if (scrollY < pinPoint() - 1) { clearActive(); return; }
+    // Si llegamos al fondo de la página, marcar la última sección sí o sí
+    var atBottom = window.innerHeight + scrollY >= document.documentElement.scrollHeight - 2;
+    if (atBottom) { setActive(sections[sections.length - 1].tab); return; }
+    var active = sections[0];
+    sections.forEach(function(s) {
+      if (s.el.offsetTop - tabBarH <= scrollY + 40) active = s;
+    });
+    setActive(active.tab);
+  }
+
+  var ticking = false;
+  window.addEventListener('scroll', function() {
+    if (ticking) return;
+    ticking = true;
+    requestAnimationFrame(function(){ onScroll(); ticking = false; });
+  }, { passive: true });
+
+  onScroll(); // estado inicial correcto al cargar
+})();
+</script>
+</body>
+</html>
