@@ -1,0 +1,705 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Novedades · Municipalidad de Tres de Febrero</title>
+  <meta name="description" content="Noticias, eventos y capacitaciones para empresas de Tres de Febrero: nuevos programas, trámites simplificados y oportunidades de vinculación comercial."/>
+  <link rel="icon" href="img/logo-solo.png"/>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="shared.css"/>
+  <link rel="stylesheet" href="animations.css"/>
+  <style>
+    /* ── Variables adicionales ── */
+    :root {
+      --n200:      #EDEDED;
+      --r-pill:    100px;
+      --r-xl:      20px;
+      --teal-light:#DCF4F0;
+      --teal:      #71C1B1;
+      --azul-deep: #0A1E35;
+      --ease:      cubic-bezier(.4,0,.2,1);
+    }
+
+    /* ── DESTACADAS ─────────────────────────────────── */
+    .feat{display:grid;grid-template-columns:1.4fr 1fr;gap:32px;margin-bottom:48px}
+    .feat-main{background:linear-gradient(135deg,var(--azul-deep,#0a1f44) 0%,var(--azul,#1a3a6b) 100%);border-radius:var(--r-xl,16px);overflow:hidden;color:#fff;display:grid;grid-template-rows:1fr auto;min-height:440px;position:relative}
+    .feat-main::before{content:"";position:absolute;top:-100px;right:-100px;width:380px;height:380px;border-radius:50%;background:radial-gradient(circle,rgba(246,147,33,.22),transparent 60%);pointer-events:none}
+    .feat-img{display:grid;place-items:center;font-size:120px;color:rgba(255,255,255,.18);font-weight:800;position:relative;min-height:200px;overflow:hidden}
+    .feat-img img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center;opacity:.55}
+    .feat-body{padding:36px;background:rgba(0,0,0,.18);backdrop-filter:blur(10px);position:relative}
+    .feat-tags{display:flex;gap:6px;margin-bottom:14px;flex-wrap:wrap}
+    .feat-date{font-size:11px;color:var(--azul-soft,#a8c4f0);font-weight:600;letter-spacing:.6px;text-transform:uppercase;margin-bottom:10px}
+    .feat-title{font-weight:800;font-size:26px;line-height:1.15;letter-spacing:-.015em;color:#fff;margin-bottom:14px}
+    .feat-excerpt{font-size:14px;color:var(--azul-soft,#a8c4f0);line-height:1.6;margin-bottom:18px}
+    .feat-link{font-size:14px;font-weight:600;color:var(--naranja,#F69321);display:inline-flex;align-items:center;gap:8px}
+
+    .feat-side{display:flex;flex-direction:column;gap:18px}
+    .fs{background:#fff;border:1px solid var(--n200,#e5e7eb);border-radius:var(--r-lg,12px);padding:24px;display:flex;gap:18px;align-items:flex-start;cursor:pointer;transition:all 200ms ease;flex:1}
+    .fs:hover{transform:translateY(-2px);border-color:transparent;box-shadow:var(--shadow-lg)}
+    .fs-img{width:88px;height:88px;border-radius:var(--r-md,8px);background:var(--azul-light,#dbeafe);color:var(--azul,#1a3a6b);display:grid;place-items:center;font-size:32px;flex-shrink:0;overflow:hidden}
+    .fs-img img{width:100%;height:100%;object-fit:cover;object-position:center;display:block}
+    .fs-img.o{background:var(--naranja-light,#fff3e0);color:var(--naranja-dark,#c85f00)}
+    .fs-img.t{background:#d1fae5;color:#1d7e6c}
+    .fs-info{flex:1;min-width:0}
+    .fs-tags{display:flex;gap:6px;margin-bottom:8px;flex-wrap:wrap}
+    .fs-date{font-size:10px;color:var(--n500,#6b7280);font-weight:600;letter-spacing:.4px;text-transform:uppercase;margin-bottom:6px}
+    .fs-title{font-weight:700;font-size:15px;line-height:1.3;color:var(--azul,#1a3a6b)}
+
+    /* ── CHIP FILTERS ────────────────────────────────── */
+    .filters-row{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:32px;align-items:center}
+    .chip{background:#fff;border:1.5px solid var(--n300,#d1d5db);color:var(--n700,#374151);font-size:13px;font-weight:600;padding:8px 16px;border-radius:50px;cursor:pointer;transition:all 150ms;font-family:inherit}
+    .chip:hover{border-color:var(--azul,#1a3a6b);color:var(--azul,#1a3a6b)}
+    .chip.active{background:var(--azul,#1a3a6b);color:#fff;border-color:var(--azul,#1a3a6b)}
+
+    /* ── NEWS GRID ───────────────────────────────────── */
+    .news-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+    .nc{background:#fff;border:1px solid var(--n200,#e5e7eb);border-radius:var(--r-lg,12px);overflow:hidden;display:flex;flex-direction:column;transition:all 250ms ease;cursor:pointer}
+    .nc:hover{transform:translateY(-3px);border-color:transparent;box-shadow:var(--shadow-lg)}
+    .nc-img{height:180px;display:grid;place-items:center;font-size:54px;font-weight:800;position:relative;overflow:hidden}
+    .nc-img.b1{background:linear-gradient(135deg,var(--azul-light,#dbeafe),#d1fae5);color:var(--azul,#1a3a6b)}
+    .nc-img.b2{background:linear-gradient(135deg,var(--naranja-light,#fff3e0),#FFE2B8);color:var(--naranja-dark,#c85f00)}
+    .nc-img.b3{background:linear-gradient(135deg,#eff6ff,var(--azul-light,#dbeafe));color:var(--azul,#1a3a6b)}
+    .nc-img.b4{background:linear-gradient(135deg,#d1fae5,#D4ECDD);color:#1d7e6c}
+    .nc-img::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 60%,rgba(0,0,0,.06))}
+    .nc-img-tag{position:absolute;top:14px;left:14px;background:rgba(255,255,255,.9);backdrop-filter:blur(8px);font-size:10px;color:var(--azul,#1a3a6b);font-weight:700;padding:4px 10px;border-radius:50px;letter-spacing:.4px;text-transform:uppercase;z-index:1}
+    .nc-body{padding:22px;display:flex;flex-direction:column;flex:1;gap:10px}
+    .nc-tags{display:flex;gap:6px;flex-wrap:wrap}
+    .nc-date{font-size:11px;color:var(--n500,#6b7280);font-weight:600;letter-spacing:.4px;text-transform:uppercase}
+    .nc-title{font-weight:700;font-size:17px;line-height:1.3;color:var(--azul,#1a3a6b);flex:1}
+    .nc-link{font-size:13px;font-weight:600;color:var(--naranja,#F69321);display:inline-flex;align-items:center;gap:6px;margin-top:8px}
+
+    .pager{display:flex;justify-content:center;gap:6px;margin-top:48px}
+    .pager button{width:38px;height:38px;border-radius:50%;background:#fff;border:1.5px solid var(--n300,#d1d5db);color:var(--n700,#374151);font-size:13px;font-weight:600;cursor:pointer;transition:all 150ms;font-family:inherit}
+    .pager button:hover:not(:disabled){border-color:var(--azul,#1a3a6b);color:var(--azul,#1a3a6b)}
+    .pager button.active{background:var(--azul,#1a3a6b);color:#fff;border-color:var(--azul,#1a3a6b)}
+    .pager button:disabled{opacity:.4;cursor:not-allowed}
+
+    /* ── EVENTOS ─────────────────────────────────────── */
+    .events{display:grid;grid-template-columns:repeat(2,1fr);gap:24px}
+    .evt{background:#fff;border:1px solid var(--n200,#e5e7eb);border-radius:var(--r-lg,12px);padding:28px;display:grid;grid-template-columns:auto 1fr;gap:24px;align-items:start;transition:all 250ms ease}
+    .evt:hover{transform:translateY(-2px);border-color:var(--naranja,#F69321);box-shadow:var(--shadow-lg)}
+    .evt-date{background:var(--azul,#1a3a6b);color:#fff;border-radius:var(--r-md,8px);padding:14px 18px;text-align:center;min-width:88px;display:flex;flex-direction:column;line-height:1}
+    .evt-date .month{font-size:11px;letter-spacing:1px;text-transform:uppercase;font-weight:700;color:var(--naranja-soft,#fbb660);margin-bottom:6px}
+    .evt-date .day{font-weight:800;font-size:36px;letter-spacing:-.02em}
+    .evt-date .year{font-size:11px;color:var(--azul-soft,#a8c4f0);margin-top:6px;font-weight:600}
+    .evt-info h3{font-weight:700;font-size:18px;letter-spacing:-.01em;color:var(--azul,#1a3a6b);margin-bottom:8px;line-height:1.25}
+    .evt-info p{font-size:13.5px;color:var(--n700,#374151);line-height:1.6;margin-bottom:14px}
+    .evt-meta{display:flex;flex-wrap:wrap;gap:12px;font-size:12px;color:var(--n700,#374151);font-weight:600;padding-top:14px;border-top:1px dashed var(--n200,#e5e7eb)}
+    .evt-meta span{display:inline-flex;align-items:center;gap:5px}
+
+    /* ── RESPONSIVE ──────────────────────────────────── */
+    @media(max-width:1024px){
+      .feat{grid-template-columns:1fr}
+      .news-grid{grid-template-columns:1fr 1fr}
+      .events{grid-template-columns:1fr}
+    }
+    @media(max-width:640px){
+      .news-grid{grid-template-columns:1fr}
+      .page-hero-img{display:none !important}
+      .feat-side .fs:nth-child(3){display:none}
+    }
+
+    /* ── TOOL BAR DE SECCIONES + SCROLL APILADO (igual que inverti/inicio) ── */
+    html, body { overflow-x: clip; }
+    html { scroll-snap-type: y proximity; scroll-padding-top: 112px; }
+    /* El hero NO es punto de snap: evita que el scroll "se bloquee" mostrando el hueco del hero */
+    .stack-section { scroll-snap-align: start; }
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-snap-type: none; scroll-behavior: auto; }
+    }
+    .pagetabs {
+      position: sticky; top: 60px; z-index: 50;
+      background: var(--azul-deep); height: 52px;
+      display: flex; align-items: stretch;
+      border-bottom: 1px solid rgba(255,255,255,.12);
+    }
+    .pagetabs-inner {
+      display: flex; width: 100%; max-width: 1200px; margin: 0 auto;
+      padding: 0 48px; align-items: stretch;
+    }
+    .ptab {
+      color: rgba(255,255,255,.6); font-size: 13px; font-weight: 600;
+      padding: 0 22px; border: none; background: none; cursor: pointer;
+      border-bottom: 3px solid transparent;
+      transition: color .2s, border-color .2s; white-space: nowrap; font-family: inherit;
+      touch-action: manipulation;
+    }
+    .ptab:hover { color: rgba(255,255,255,.9); }
+    .ptab.active { color: #fff; border-bottom-color: var(--naranja); }
+    .ptab:focus-visible { outline: 2px solid #fff; outline-offset: -4px; border-radius: 4px; }
+    .stack-section {
+      position: relative;
+      min-height: calc(100vh - 112px);
+      scroll-margin-top: 112px;
+      border-radius: 18px 18px 0 0;
+      box-shadow: 0 -10px 40px rgba(0,0,0,.16);
+      margin-top: -18px;
+    }
+    /* Primera sección sin snap: el scroll desde el hero corto entra libre (sin enganche brusco) */
+    #destacadas { z-index: 2; background: var(--n000); scroll-snap-align: none; }
+    #archivo    { z-index: 3; background: var(--n100); }
+    #eventos    { z-index: 4; background: var(--n000); min-height: 72vh; }
+    .footer { scroll-snap-align: end; }
+    @media (max-width: 768px) {
+      .pagetabs-inner { padding: 0; overflow-x: auto; justify-content: center; }
+      .pagetabs-inner::-webkit-scrollbar { display: none; }
+      .ptab { padding: 0 16px; font-size: 12px; }
+    }
+  </style>
+</head>
+<body>
+
+<a class="skip-link" href="#contenido">Saltar al contenido</a>
+
+<nav class="nav">
+  <div class="container">
+    <div class="nav-inner">
+      <div class="nav-brand">
+        <img src="img/logo2.png" alt="Municipalidad de Tres de Febrero">
+      </div>
+      <nav class="nav-links">
+        <a href="inicio.html">Inicio</a>
+        <a href="ben-inc.html">Beneficios e incentivos</a>
+        <a href="red-comercios.html">Red de comercio</a>
+        <a href="novedades.html" class="active" aria-current="page">Novedades</a>
+      </nav>
+      <button class="nav-toggle" aria-label="Abrir menú" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+      <a href="inicio.html#contacto" class="nav-cta">Contactanos</a>
+    </div>
+  </div>
+</nav>
+<!-- MENÚ MOBILE -->
+<div class="mobile-menu" id="mobileMenu">
+  <div class="mm-head">
+    <img src="img/logo2.png" alt="Municipalidad de Tres de Febrero" class="mm-logo">
+    <button class="mm-close" aria-label="Cerrar menú">&times;</button>
+  </div>
+  <nav class="mm-nav">
+    <div class="mm-group">
+      <button class="mm-top" aria-expanded="false">Inicio<span class="mm-ico" aria-hidden="true"></span></button>
+      <div class="mm-sub">
+        <a href="inicio.html">Página de inicio</a>
+        <a href="inicio.html#proceso">Paso a paso</a>
+        <a href="inicio.html#distrito">El distrito</a>
+        <a href="inicio.html#novedades">Novedades</a>
+        <a href="inicio.html#contacto">Contacto</a>
+      </div>
+    </div>
+    <div class="mm-group">
+      <button class="mm-top" aria-expanded="false">Beneficios e incentivos<span class="mm-ico" aria-hidden="true"></span></button>
+      <div class="mm-sub">
+        <a href="ben-inc.html#por-que">Por qué en 3F</a>
+        <a href="ben-inc.html#comparacion">Comparativa</a>
+        <a href="ben-inc.html#sectores">Por sector</a>
+        <a href="ben-inc.html#simulador">Simulador TISH</a>
+        <a href="ben-inc.html#marco">Marco Legal</a>
+      </div>
+    </div>
+    <a class="mm-link" href="red-comercios.html">Red de comercio</a>
+    <div class="mm-group is-current open">
+      <button class="mm-top" aria-expanded="true">Novedades<span class="mm-ico" aria-hidden="true"></span></button>
+      <div class="mm-sub">
+        <a href="novedades.html#destacadas">Destacadas</a>
+        <a href="novedades.html#archivo">Archivo</a>
+        <a href="novedades.html#eventos">Eventos</a>
+      </div>
+    </div>
+    <a class="mm-link" href="inicio.html#contacto">Contactanos</a>
+  </nav>
+</div>
+<script>
+  (function(){
+    var toggle = document.querySelector('.nav-toggle');
+    var menu = document.getElementById('mobileMenu');
+    if (!toggle || !menu) return;
+    var closeBtn = menu.querySelector('.mm-close');
+    function focusables(){ return menu.querySelectorAll('button, a[href]'); }
+    function openMenu(){ menu.classList.add('open'); document.body.style.overflow = 'hidden'; toggle.setAttribute('aria-expanded','true'); closeBtn.focus(); document.addEventListener('keydown', onKey); }
+    function closeMenu(){ menu.classList.remove('open'); document.body.style.overflow = ''; toggle.setAttribute('aria-expanded','false'); document.removeEventListener('keydown', onKey); toggle.focus(); }
+    function onKey(e){
+      if (e.key === 'Escape') { e.preventDefault(); closeMenu(); return; }
+      if (e.key === 'Tab') {
+        var f = focusables(); if (!f.length) return;
+        var first = f[0], last = f[f.length - 1];
+        if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
+        else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
+      }
+    }
+    toggle.addEventListener('click', openMenu);
+    closeBtn.addEventListener('click', closeMenu);
+    menu.querySelectorAll('.mm-top').forEach(function(btn){
+      btn.addEventListener('click', function(){
+        var exp = btn.getAttribute('aria-expanded') === 'true';
+        menu.querySelectorAll('.mm-top').forEach(function(other){
+          if (other !== btn) { other.setAttribute('aria-expanded','false'); other.parentElement.classList.remove('open'); }
+        });
+        btn.setAttribute('aria-expanded', String(!exp));
+        btn.parentElement.classList.toggle('open', !exp);
+      });
+    });
+    menu.querySelectorAll('a').forEach(function(a){ a.addEventListener('click', closeMenu); });
+  })();
+</script>
+
+<!-- HERO -->
+<section class="page-hero" id="contenido" tabindex="-1">
+  <div class="container">
+    <div class="page-hero-inner">
+      <div class="page-hero-text reveal-left">
+        <div class="eyebrow">Novedades</div>
+        <h1>Noticias, eventos y <em>oportunidades</em> para tu empresa</h1>
+        <p>Enterate de los nuevos programas, trámites simplificados y capacitaciones para empresas.</p>
+      </div>
+      <div class="page-hero-img reveal-scale" style="display:flex;flex-direction:row;align-items:center;justify-content:center;padding:32px 24px;gap:20px">
+        <div style="flex:1;background:#fff;border:1px solid var(--n200);border-top:3px solid var(--naranja);border-radius:20px;padding:24px 20px;text-align:center;box-shadow:0 4px 20px rgba(10,30,80,.08);">
+          <div style="font-size:10px;font-weight:700;letter-spacing:1.4px;text-transform:uppercase;color:var(--naranja);margin-bottom:10px;">Este mes</div>
+          <div class="hero-stat-num" style="font-family:'Fraunces',serif;font-weight:500;font-size:64px;color:var(--azul-deep);line-height:1;margin-bottom:6px;">12</div>
+          <div style="font-size:13px;color:var(--n700);font-weight:600;">publicaciones</div>
+        </div>
+        <div style="flex:1;background:#fff;border:1px solid var(--n200);border-top:3px solid var(--azul);border-radius:20px;padding:24px 20px;text-align:center;box-shadow:0 4px 20px rgba(10,30,80,.08);">
+          <div style="font-size:10px;font-weight:700;letter-spacing:1.4px;text-transform:uppercase;color:var(--azul);margin-bottom:10px;">Próximos</div>
+          <div class="hero-stat-num" style="font-family:'Fraunces',serif;font-weight:500;font-size:64px;color:var(--azul-deep);line-height:1;margin-bottom:6px;">4</div>
+          <div style="font-size:13px;color:var(--n700);font-weight:600;">eventos</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TABS BAR (sticky, aparece al scrollear el hero) -->
+<nav class="pagetabs" id="pagetabs" role="tablist" aria-label="Secciones de Novedades">
+  <div class="pagetabs-inner">
+    <button class="ptab active" data-target="destacadas" role="tab" aria-selected="true">Destacadas</button>
+    <button class="ptab" data-target="archivo" role="tab" aria-selected="false">Archivo</button>
+    <button class="ptab" data-target="eventos" role="tab" aria-selected="false">Eventos</button>
+  </div>
+</nav>
+
+<!-- ── DESTACADAS ───────────────────────────────────────── -->
+<section class="section stack-section" id="destacadas">
+  <div class="container">
+    <div class="section-header reveal">
+      <div class="eyebrow">Destacadas</div>
+      <h2 class="sec-title">Lo más relevante <em>esta semana</em></h2>
+    </div>
+
+    <div class="feat">
+      <article class="feat-main reveal-left">
+        <div class="feat-img"><img loading="lazy" decoding="async" src="img/noticia-habilitacion.jpg" alt="Habilitación Instantánea"></div>
+        <div class="feat-body">
+          <div class="feat-tags">
+            <span class="tag" style="background:rgba(246,147,33,.2);color:var(--naranja-soft,#fbb660)">Trámite</span>
+            <span class="tag" style="background:rgba(255,255,255,.12);color:#fff">Digital</span>
+          </div>
+          <div class="feat-date">19 Ago 2025 · Tres de Febrero</div>
+          <h3 class="feat-title">Habilitamos comercios al instante: un nuevo paso en la simplificación</h3>
+          <p class="feat-excerpt">Con una simple declaración jurada digital en Mi3F, comerciantes y emprendedores pueden comenzar a trabajar al instante, sin trámites presenciales ni demoras. Al tramitarla, se adhieren automáticamente al Régimen de Estabilidad Fiscal.</p>
+          <a href="https://www.tresdefebrero.gov.ar/habilitacioninstantanea/" target="_blank" rel="noopener noreferrer" class="feat-link">Ver nota completa <span>→</span></a>
+        </div>
+      </article>
+      <div class="feat-side reveal-right">
+        <a class="fs" href="https://www.tresdefebrero.gov.ar/regimendeestabilidadfiscalmunicipal/" target="_blank" rel="noopener noreferrer">
+          <div class="fs-img"><img loading="lazy" decoding="async" src="img/noticia-regimen-fiscal.jpg" alt="Régimen Fiscal"></div>
+          <div class="fs-info">
+            <div class="fs-tags"><span class="tag tag-blue">Beneficio</span><span class="tag tag-orange">Empresas</span></div>
+            <div class="fs-date">12 Ago 2025</div>
+            <div class="fs-title">Régimen de Estabilidad Fiscal: alícuotas de la TISH congeladas por hasta 30 años (Ord. N°3721)</div>
+          </div>
+        </a>
+        <a class="fs" href="https://www.tresdefebrero.gov.ar/empresasde3fparticiparonenapras2024/" target="_blank" rel="noopener noreferrer">
+          <div class="fs-img o"><img loading="lazy" decoding="async" src="img/noticia-expo-apras.jpg" alt="Expo Apras 2024"></div>
+          <div class="fs-info">
+            <div class="fs-tags"><span class="tag tag-orange">Empresas</span><span class="tag tag-green">Comercio Exterior</span></div>
+            <div class="fs-date">07 May 2024</div>
+            <div class="fs-title">Empresas de 3F participaron en la Feria Internacional Expo Apras 2024 en Curitiba, Brasil</div>
+          </div>
+        </a>
+        <a class="fs" href="https://www.tresdefebrero.gov.ar/tallerescomex/" target="_blank" rel="noopener noreferrer">
+          <div class="fs-img t"><img loading="lazy" decoding="async" src="img/noticia-talleres-comex.jpg" alt="Talleres Comercio Exterior"></div>
+          <div class="fs-info">
+            <div class="fs-tags"><span class="tag tag-green">Curso</span><span class="tag tag-orange">Pymes</span></div>
+            <div class="fs-date">25 Jul 2023</div>
+            <div class="fs-title">Talleres gratuitos de Comercio Exterior: ruedas de negocios y misiones internacionales para PyMEs</div>
+          </div>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── TODAS LAS NOTICIAS ───────────────────────────────── -->
+<section class="section alt stack-section" id="archivo">
+  <div class="container">
+    <div style="display:flex;align-items:flex-end;justify-content:space-between;flex-wrap:wrap;gap:18px;margin-bottom:32px">
+      <div>
+        <div class="eyebrow">Todas las noticias</div>
+        <h2 class="sec-title">Archivo completo</h2>
+      </div>
+      <div id="result-count" style="font-size:13px;color:var(--n500,#6b7280);font-weight:600">Mostrando 12 publicaciones</div>
+    </div>
+
+    <div class="filters-row" id="chips-row">
+      <button class="chip active" data-filter="">Todas</button>
+      <button class="chip" data-filter="Programa">Programas</button>
+      <button class="chip" data-filter="Trámite">Trámites</button>
+      <button class="chip" data-filter="Beneficio">Beneficios</button>
+      <button class="chip" data-filter="Curso">Cursos</button>
+      <button class="chip" data-filter="Empresas">Empresas</button>
+      <button class="chip" data-filter="Pymes">Pymes</button>
+      <button class="chip" data-filter="Emprendedores">Emprendedores</button>
+    </div>
+
+    <div class="news-grid" id="news-grid"></div>
+
+    <div class="pager" id="pager"></div>
+  </div>
+</section>
+
+<!-- ── EVENTOS ──────────────────────────────────────────── -->
+<section class="section stack-section" id="eventos">
+  <div class="container">
+    <div class="section-header reveal">
+      <div class="eyebrow">Próximos eventos</div>
+      <h2 class="sec-title">Encuentros, capacitaciones y <em>networking</em></h2>
+      <p class="sec-lead">Espacios de diálogo entre la Secretaría, empresas, cámaras y organismos. Inscribite a los próximos eventos.</p>
+    </div>
+
+    <div class="events" data-stagger>
+      <article class="evt reveal">
+        <div class="evt-date"><span class="month">Nov</span><span class="day">12</span><span class="year">2025</span></div>
+        <div class="evt-info">
+          <span class="tag tag-blue" style="margin-bottom:8px">Foro</span>
+          <h3>Foro de Industrias 3F · Edición Anual</h3>
+          <p>Encuentro de las cámaras industriales del partido para presentar agenda 2026, balance fiscal y nuevos programas de incentivos.</p>
+          <div class="evt-meta"><span>📍 Salón Municipal · Caseros</span><span>🕘 9:00 — 13:00 hs</span><span style="color:var(--naranja-dark,#c85f00)">✔ Inscripción abierta</span></div>
+        </div>
+      </article>
+      <article class="evt reveal">
+        <div class="evt-date" style="background:var(--naranja,#F69321)"><span class="month" style="color:#fff;opacity:.9">Nov</span><span class="day">18</span><span class="year" style="color:#fff;opacity:.7">2025</span></div>
+        <div class="evt-info">
+          <span class="tag tag-orange" style="margin-bottom:8px">Capacitación</span>
+          <h3>Cómo solicitar el crédito fiscal por empleo</h3>
+          <p>Taller práctico con el equipo de la Secretaría. Revisión paso a paso del trámite, requisitos y casos frecuentes. Cupo limitado.</p>
+          <div class="evt-meta"><span>📍 Centro Empresarial 3F</span><span>🕑 14:00 — 17:00 hs</span><span style="color:var(--naranja-dark,#c85f00)">✔ Inscripción abierta</span></div>
+        </div>
+      </article>
+      <article class="evt reveal">
+        <div class="evt-date"><span class="month">Nov</span><span class="day">25</span><span class="year">2025</span></div>
+        <div class="evt-info">
+          <span class="tag tag-teal" style="margin-bottom:8px">Networking</span>
+          <h3>Encuentro de Pymes y Proveedores 3F</h3>
+          <p>Espacio de vinculación directa entre pymes locales y grandes empresas radicadas en el partido para evaluar relaciones de proveeduría.</p>
+          <div class="evt-meta"><span>📍 UNTreF Caseros</span><span>🕕 18:00 — 21:00 hs</span><span style="color:var(--naranja-dark,#c85f00)">✔ Inscripción abierta</span></div>
+        </div>
+      </article>
+      <article class="evt reveal">
+        <div class="evt-date"><span class="month">Dic</span><span class="day">03</span><span class="year">2025</span></div>
+        <div class="evt-info">
+          <span class="tag tag-blue" style="margin-bottom:8px">Foro</span>
+          <h3>RIGI Municipal: presentación a inversores</h3>
+          <p>Presentación del régimen, casos aplicables y oportunidades concretas de inversión en el partido. Con presencia de funcionarios provinciales.</p>
+          <div class="evt-meta"><span>📍 Sede Municipal</span><span>🕙 10:00 — 13:00 hs</span><span style="color:var(--n500,#6b7280)">🕐 Próximamente</span></div>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer-inner">
+      <img loading="lazy" decoding="async" src="img/logo.png" alt="Municipalidad de Tres de Febrero" class="footer-logo-img">
+      <div class="footer-bottom">
+        <div class="footer-social">
+          <a href="#" title="Facebook"><img src="img/iconos/facebook.svg" alt="Facebook"></a>
+          <a href="#" title="Instagram"><img src="img/iconos/instagram.svg" alt="Instagram"></a>
+          <a href="#" title="X / Twitter"><img src="img/iconos/X.svg" alt="X / Twitter"></a>
+          <a href="#" title="YouTube"><img src="img/iconos/youtube.svg" alt="YouTube"></a>
+          <a href="#" title="LinkedIn"><img src="img/iconos/linkedin.svg" alt="LinkedIn"></a>
+          <a href="#" title="Email"><img src="img/iconos/mail.svg" alt="Email"></a>
+          <a href="#" title="WhatsApp"><img src="img/iconos/whatsapp.svg" alt="WhatsApp"></a>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+const noticias = [
+  { tema: 'Trámite', tipos: ['Empresas','Emprendedores'], fecha: '19 Ago 2025', titulo: 'Habilitación Instantánea: abrí tu comercio al instante con una declaración jurada digital en Mi3F', emoji: '⚡', bg: 'b3', tag: 'Trámite', url: 'https://www.tresdefebrero.gov.ar/habilitacioninstantanea/', img: 'noticia-habilitacion.jpg' },
+  { tema: 'Beneficio', tipos: ['Empresas','Industrias'], fecha: '12 Ago 2025', titulo: 'Régimen de Estabilidad Fiscal Municipal: alícuotas de la TISH congeladas por hasta 30 años (Ord. N°3721)', emoji: '🔐', bg: 'b1', tag: 'Beneficio', url: 'https://www.tresdefebrero.gov.ar/regimendeestabilidadfiscalmunicipal/', img: 'noticia-regimen-fiscal.jpg' },
+  { tema: 'Empresas', tipos: ['Pymes','Empresas'], fecha: '07 May 2024', titulo: 'Empresas de 3F participaron en la Feria Internacional Expo Apras 2024 en Curitiba, Brasil', emoji: '🌎', bg: 'b2', tag: 'Empresas', url: 'https://www.tresdefebrero.gov.ar/empresasde3fparticiparonenapras2024/', img: 'noticia-expo-apras.jpg' },
+  { tema: 'Curso', tipos: ['Pymes','Empresas'], fecha: '25 Jul 2023', titulo: 'Talleres gratuitos de Comercio Exterior: ruedas de negocios y misiones internacionales para PyMEs del distrito', emoji: '📦', bg: 'b4', tag: 'Curso', url: 'https://www.tresdefebrero.gov.ar/tallerescomex/', img: 'noticia-talleres-comex.jpg' },
+  { tema: 'Empresas', tipos: ['Empresas','Industrias'], fecha: '15 Oct 2025', titulo: 'Quickfood inaugura ampliación de planta con inversión de USD 18M', emoji: '🏭', bg: 'b1', tag: 'Empresas' },
+  { tema: 'Programa', tipos: ['Pymes','Emprendedores'], fecha: '14 Oct 2025', titulo: 'Empleo Joven 3F: subsidio para incorporación de profesionales menores de 30', emoji: '★', bg: 'b2', tag: 'Programa' },
+  { tema: 'Beneficio', tipos: ['Empresas','Industrias'], fecha: '05 Oct 2025', titulo: '3F entre los primeros del GBA en adherirse al RIGI municipal', emoji: '▲', bg: 'b1', tag: 'RIGI' },
+  { tema: 'Programa', tipos: ['Empresas','Pymes'], fecha: '02 Oct 2025', titulo: 'Foro de Industrias 3F: balance del primer semestre y perspectivas 2026', emoji: '●', bg: 'b2', tag: 'Evento' },
+  { tema: 'Beneficio', tipos: ['Pymes','Emprendedores'], fecha: '28 Sep 2025', titulo: 'Crédito fiscal por empleo: cómo solicitar la devolución del 50%', emoji: '%', bg: 'b3', tag: 'Beneficio' },
+  { tema: 'Programa', tipos: ['Comercios'], fecha: '25 Sep 2025', titulo: 'Red de comercios 3F suma 240 nuevos locales adheridos en lo que va del año', emoji: '■', bg: 'b4', tag: 'Comercio' },
+  { tema: 'Trámite', tipos: ['Emprendedores','Comercios'], fecha: '10 Sep 2025', titulo: 'Habilitación de food trucks y puestos temporarios: nueva normativa vigente', emoji: '🚚', bg: 'b3', tag: 'Trámite' },
+  { tema: 'Programa', tipos: ['Comercios','Pymes'], fecha: '01 Sep 2025', titulo: 'Programa Proveedores 3F: más de 120 pymes ya inscriptas en la primera semana', emoji: '🤝', bg: 'b4', tag: 'Programa' },
+];
+
+function getPerPage() { return window.innerWidth <= 640 ? 3 : 6; }
+let currentFilter = '';
+let currentPage = 1;
+
+function tagClass(t) {
+  if (['Programa','Beneficio','RIGI','Inversión'].includes(t)) return 'tag-blue';
+  if (['Trámite'].includes(t)) return 'tag-gray';
+  if (['Curso','Comercio'].includes(t)) return 'tag-green';
+  if (['Empresas','Industrias','Pymes','Emprendedores','Evento'].includes(t)) return 'tag-orange';
+  return 'tag-gray';
+}
+
+function filtered() {
+  if (!currentFilter) return noticias;
+  return noticias.filter(n => n.tema === currentFilter || n.tipos.includes(currentFilter));
+}
+
+function renderGrid() {
+  const data = filtered();
+  const perPage = getPerPage();
+  const start = (currentPage - 1) * perPage;
+  const page  = data.slice(start, start + perPage);
+  const grid  = document.getElementById('news-grid');
+  const count = document.getElementById('result-count');
+  count.textContent = `Mostrando ${Math.min(data.length, perPage * currentPage)} de ${data.length} publicaciones`;
+
+  if (!page.length) {
+    grid.innerHTML = '<div style="grid-column:1/-1;text-align:center;padding:64px;color:var(--n500,#6b7280);font-size:14px">No se encontraron novedades con el filtro seleccionado.</div>';
+    return;
+  }
+
+  grid.innerHTML = page.map(n => `
+    <article class="nc reveal">
+      <div class="nc-img ${n.bg}"><span class="nc-img-tag">${n.tag}</span>${n.img ? `<img src="img/${n.img}" alt="" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center">` : n.emoji}</div>
+      <div class="nc-body">
+        <div class="nc-tags">
+          <span class="tag ${tagClass(n.tema)}">${n.tema}</span>
+          ${n.tipos.slice(0,2).map(t=>`<span class="tag ${tagClass(t)}">${t}</span>`).join('')}
+        </div>
+        <span class="nc-date">${n.fecha}</span>
+        <h3 class="nc-title">${n.titulo}</h3>
+        <a href="${n.url || '#'}" ${n.url ? 'target="_blank" rel="noopener noreferrer"' : ''} class="nc-link">Leer más <span>→</span></a>
+      </div>
+    </article>
+  `).join('');
+
+  renderPager(data.length);
+  window.revealInit && window.revealInit();
+}
+
+function renderPager(total) {
+  const pages = Math.ceil(total / getPerPage());
+  const pager = document.getElementById('pager');
+  if (pages <= 1) { pager.innerHTML = ''; return; }
+  let html = `<button ${currentPage===1?'disabled':''} onclick="goPage(${currentPage-1})">‹</button>`;
+  for (let i=1;i<=pages;i++) {
+    html += `<button class="${i===currentPage?'active':''}" onclick="goPage(${i})">${i}</button>`;
+  }
+  html += `<button ${currentPage===pages?'disabled':''} onclick="goPage(${currentPage+1})">›</button>`;
+  pager.innerHTML = html;
+}
+
+function goPage(p) {
+  currentPage = p;
+  renderGrid();
+  document.querySelector('.section.alt').scrollIntoView({behavior:'smooth',block:'start'});
+}
+
+// Chip filter
+document.getElementById('chips-row').addEventListener('click', e => {
+  const btn = e.target.closest('.chip');
+  if (!btn) return;
+  document.querySelectorAll('.chip').forEach(c => c.classList.remove('active'));
+  btn.classList.add('active');
+  currentFilter = btn.dataset.filter;
+  currentPage = 1;
+  renderGrid();
+});
+
+renderGrid();
+</script>
+<script src="animations.js"></script>
+
+<script>
+// Tool bar de secciones: clic → scroll a la sección; scroll → actualiza el tab activo
+(function() {
+  var tabs    = document.querySelectorAll('#pagetabs .ptab');
+  var tabBarH = 112; // 60px nav + 52px tool bar
+  if (!tabs.length) return;
+
+  var sections = [];
+  tabs.forEach(function(tab) {
+    var el = document.getElementById(tab.dataset.target);
+    if (el) sections.push({ tab: tab, el: el });
+  });
+
+  var reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var tabBar = document.getElementById('pagetabs');
+  var pinNatural = 0;
+  function measurePin() {
+    // offsetTop de un sticky "pegado" devuelve su posición desplazada (scrollY+60);
+    // con position:static temporal medimos su posición natural real.
+    var prev = tabBar.style.position;
+    tabBar.style.position = 'static';
+    pinNatural = tabBar.offsetTop;
+    tabBar.style.position = prev;
+  }
+  measurePin();
+  window.addEventListener('load', measurePin);
+  window.addEventListener('resize', measurePin);
+  function pinPoint() { return pinNatural - 60; }
+
+  function setActive(tab) {
+    tabs.forEach(function(t){
+      t.classList.remove('active'); t.setAttribute('aria-selected','false'); t.setAttribute('tabindex','-1');
+    });
+    tab.classList.add('active'); tab.setAttribute('aria-selected','true'); tab.setAttribute('tabindex','0');
+  }
+  function clearActive() {
+    tabs.forEach(function(t, i){
+      t.classList.remove('active'); t.setAttribute('aria-selected','false'); t.setAttribute('tabindex', i === 0 ? '0' : '-1');
+    });
+  }
+
+  sections.forEach(function(s){ s.el.setAttribute('tabindex','-1'); s.el.style.outline = 'none'; });
+
+  var lockUntil = 0;
+  function goToSection(tab, focusIt) {
+    var el = document.getElementById(tab.dataset.target);
+    if (!el) return;
+    setActive(tab);
+    lockUntil = Date.now() + 800;
+    var target = Math.max(el.offsetTop - tabBarH, pinPoint());
+    document.documentElement.style.scrollSnapType = 'none';
+    window.scrollTo({ top: target, behavior: reduceMotion ? 'auto' : 'smooth' });
+    // Reactivar el snap recién cuando el scroll se detiene (un timeout fijo
+    // cortaba los desplazamientos largos, p. ej. volver a una sección de arriba).
+    if (reduceMotion) {
+      document.documentElement.style.scrollSnapType = '';
+    } else {
+      var idleTimer;
+      var onIdle = function() {
+        lockUntil = Date.now() + 250;
+        clearTimeout(idleTimer);
+        idleTimer = setTimeout(function() {
+          window.removeEventListener('scroll', onIdle);
+          document.documentElement.style.scrollSnapType = '';
+        }, 140);
+      };
+      window.addEventListener('scroll', onIdle, { passive: true });
+      onIdle();
+    }
+    if (focusIt) window.setTimeout(function(){ el.focus({ preventScroll: true }); }, reduceMotion ? 0 : 400);
+  }
+
+  tabs.forEach(function(tab) { tab.addEventListener('click', function(){ goToSection(tab, false); }); });
+
+  if (tabBar) {
+    tabBar.addEventListener('keydown', function(e) {
+      var list = Array.prototype.slice.call(tabs);
+      var i = list.indexOf(document.activeElement);
+      if (i === -1) return;
+      var next = null;
+      if (e.key === 'ArrowRight' || e.key === 'ArrowDown') next = list[(i + 1) % list.length];
+      else if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') next = list[(i - 1 + list.length) % list.length];
+      else if (e.key === 'Home') next = list[0];
+      else if (e.key === 'End') next = list[list.length - 1];
+      else return;
+      e.preventDefault();
+      next.focus();
+      goToSection(next, true);
+    });
+  }
+
+  function onScroll() {
+    if (Date.now() < lockUntil) return;
+    var scrollY = window.scrollY;
+    if (scrollY < pinPoint() - 1) { clearActive(); return; }
+    var atBottom = window.innerHeight + scrollY >= document.documentElement.scrollHeight - 2;
+    if (atBottom) { setActive(sections[sections.length - 1].tab); return; }
+    var active = sections[0];
+    sections.forEach(function(s) { if (s.el.offsetTop - tabBarH <= scrollY + 40) active = s; });
+    setActive(active.tab);
+  }
+
+  var ticking = false;
+  window.addEventListener('scroll', function() {
+    if (ticking) return;
+    ticking = true;
+    requestAnimationFrame(function(){ onScroll(); ticking = false; });
+  }, { passive: true });
+
+  onScroll();
+})();
+</script>
+
+<script>
+// Conteo animado 0 → número en las estadísticas del hero (al entrar en pantalla)
+(function() {
+  var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  function parse(str) {
+    var m = str.match(/^(\D*?)([\d.,]+)(.*)$/);
+    if (!m || !/\d/.test(m[2])) return null;
+    var numStr = m[2];
+    var hasComma = numStr.indexOf(',') >= 0;
+    var decimals = hasComma ? (numStr.split(',')[1] || '').length : 0;
+    var useThousands = !hasComma && numStr.indexOf('.') >= 0;
+    var value = parseFloat(numStr.replace(/\./g, '').replace(',', '.'));
+    if (isNaN(value)) return null;
+    return { prefix: m[1], suffix: m[3], decimals: decimals, useThousands: useThousands, value: value };
+  }
+  function fmt(v, d, t) {
+    var parts = v.toFixed(d).split('.');
+    if (t) parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, '.');
+    return d > 0 ? parts[0] + ',' + (parts[1] || '') : parts[0];
+  }
+  function animate(node, info) {
+    var final = info.prefix + fmt(info.value, info.decimals, info.useThousands) + info.suffix;
+    if (reduce || info.value === 0) { node.textContent = final; return; }
+    var dur = 1300, start = null;
+    function step(ts) {
+      if (!start) start = ts;
+      var p = Math.min((ts - start) / dur, 1);
+      var eased = 1 - Math.pow(1 - p, 3);
+      node.textContent = info.prefix + fmt(info.value * eased, info.decimals, info.useThousands) + info.suffix;
+      if (p < 1) requestAnimationFrame(step);
+      else node.textContent = final;
+    }
+    requestAnimationFrame(step);
+  }
+  var targets = [];
+  document.querySelectorAll('.hero-stat-num').forEach(function(el) {
+    var node = el.firstChild;
+    if (!node || node.nodeType !== 3) return;
+    var info = parse(node.textContent);
+    if (!info) return;
+    el._cu = { node: node, info: info, done: false };
+    targets.push(el);
+  });
+  if (!targets.length) return;
+  if (!('IntersectionObserver' in window)) {
+    targets.forEach(function(el) { animate(el._cu.node, el._cu.info); });
+    return;
+  }
+  var io = new IntersectionObserver(function(entries) {
+    entries.forEach(function(e) {
+      if (!e.isIntersecting) return;
+      var cu = e.target._cu;
+      if (cu && !cu.done) { cu.done = true; animate(cu.node, cu.info); }
+      io.unobserve(e.target);
+    });
+  }, { threshold: 0.4 });
+  targets.forEach(function(el) { io.observe(el); });
+})();
+</script>
+</body>
+</html>
